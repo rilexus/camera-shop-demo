@@ -17,9 +17,9 @@ const Dialog = ({ children, open, onClick }) => {
   useEffect(() => {
     const elem = ref.current;
     if (open) {
-      elem?.showModal();
+      if (!elem.open) elem?.showModal();
     } else {
-      elem?.close();
+      if (elem.open) elem?.close();
     }
   }, [open]);
 

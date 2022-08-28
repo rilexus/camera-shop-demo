@@ -1,3 +1,5 @@
+export { default as YStack } from "./YStack/YStack";
+export { default as ThemeProvider } from "./theme/ThemeProvider";
 export { default as Dialog } from "./Dialog/Dialog";
 export { default as Container } from "./Container/Container";
 export { default as Flex } from "./Flex/Flex";

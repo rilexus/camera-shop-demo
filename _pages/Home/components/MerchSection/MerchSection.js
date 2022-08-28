@@ -34,11 +34,7 @@ const merges = [
 
 const MerchSection = () => {
   return (
-    <section
-      style={{
-        margin: "10vh 0",
-      }}
-    >
+    <section>
       <Text align={"center"} as={"h1"}>
         You can buy our merch
       </Text>

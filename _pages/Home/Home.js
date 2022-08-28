@@ -30,6 +30,7 @@ const Layout = ({ main, navigation }) => {
 const Home = () => {
   return (
     <Layout
+      navigation={<Navigation />}
       main={
         <div>
           <Head>
@@ -47,7 +48,6 @@ const Home = () => {
           </main>
         </div>
       }
-      navigation={<Navigation />}
       footer={<Footer />}
     />
   );

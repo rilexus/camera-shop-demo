@@ -13,9 +13,8 @@ import {
 import { ALIGN, JUSTIFY } from "../../../../../../ui/Flex";
 import HeartOutlined from "../../../../../../ui/icons/HeartOutlined/HeartOutlined";
 import ButtonStyleless from "../../../../../../ui/buttons/ButtonStyleless/ButtonStyleless";
-import styled from "styled-components";
-import { l, md, sm, xl, xxl } from "../../../../../../ui/css/medias";
 import ScrollableList from "../../../../../../ui/ScrollableList/ScrollableList";
+import { useFavouredProducts } from "../../../../../../Providers/FavorProvider";
 
 const Rating = ({ rating }) => {
   const r = useMemo(
@@ -59,9 +58,21 @@ const HeartButton = ({ type, ...props }) => {
   );
 };
 
-const MergeTile = ({ src, title, price, description, rating }) => {
+const MergeTile = ({ id, src, title, price, description, rating }) => {
   const [isOver, ref] = useMouseOver();
-  const [favored, favor] = useToggle(false);
+  const [favouredProducts, setFavouredProducts] = useFavouredProducts();
+
+  const favored = favouredProducts.includes(id);
+
+  const favour = (id) => {
+    setFavouredProducts((old) => {
+      if (!favored) {
+        return [...old, id];
+      }
+      return old.filter((i) => id !== i);
+    });
+  };
+
   return (
     <div
       ref={ref}
@@ -76,7 +87,10 @@ const MergeTile = ({ src, title, price, description, rating }) => {
         </Display>
       </Flex>
       <Flex justify={JUSTIFY.end}>
-        <HeartButton type={favored ? "filled" : "outlined"} onClick={favor} />
+        <HeartButton
+          type={favored ? "filled" : "outlined"}
+          onClick={() => favour(id)}
+        />
       </Flex>
       <img src={src} alt="" width={"auto"} height={"100%"} />
       <Text align={"center"}>
@@ -125,6 +139,7 @@ const MergeList = ({ products }) => {
             return (
               <MergeTile
                 key={id}
+                id={id}
                 rating={rating}
                 title={title}
                 price={price}

@@ -3,6 +3,7 @@ import { useStyle } from "../../hooks";
 
 const JUSTIFY = {
   around: "space-around",
+  between: "space-between",
   center: "center",
   left: "left",
   end: "end",

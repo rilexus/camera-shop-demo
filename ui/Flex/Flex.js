@@ -1,4 +1,4 @@
-import React, { createElement } from "react";
+import React, { createElement, forwardRef } from "react";
 import { useStyle } from "../../hooks";
 
 const JUSTIFY = {
@@ -14,31 +14,41 @@ const ALIGN = {
   center: "center",
 };
 
-const Flex = ({
-  children,
-  style,
-  justify = "normal",
-  align = ALIGN.start,
-  as = "div",
-  ...props
-}) => {
+const WRAP = {
+  wrap: "wrap",
+};
+
+const Flex = forwardRef(function Flex(
+  {
+    children,
+    style,
+    justify = "normal",
+    align = ALIGN.start,
+    wrap = "inherit",
+    as = "div",
+    ...props
+  },
+  ref
+) {
   const s = useStyle(
     {
       ...style,
       display: "flex",
       justifyContent: justify,
       alignItems: align,
+      flexWrap: wrap,
     },
-    [style, justify, align]
+    [style, justify, align, wrap]
   );
   return createElement(
     as,
     {
       ...props,
+      ref,
       style: s,
     },
     children
   );
-};
-export { JUSTIFY, ALIGN };
+});
+export { JUSTIFY, ALIGN, WRAP };
 export default Flex;

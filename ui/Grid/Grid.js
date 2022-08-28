@@ -11,8 +11,6 @@ import {
 const ItemStyled = styled.div`
   position: relative;
   flex-basis: 100%;
-  padding-left: ${({ gutter }) => gutter};
-  padding-top: ${({ gutter }) => gutter};
 
   ${({ sm }) => {
     if (sm) {
@@ -75,20 +73,27 @@ const Item = ({ sm, md, l, xl, xxl, gutter, ...props }) => {
 };
 
 const GridStyled = styled.div`
+  position: relative;
   box-sizing: border-box;
   display: flex;
   flex-wrap: wrap;
-  position: relative;
   margin-top: calc(-1 * ${({ gutter }) => gutter});
   margin-left: calc(-1 * ${({ gutter }) => gutter});
+
+  > * {
+    box-sizing: border-box;
+    padding-left: ${({ gutter }) => gutter};
+    padding-top: ${({ gutter }) => gutter};
+
+    width: 100%;
+    max-width: 100%;
+  }
 `;
 
 const Grid = ({ gutter = "0px", children, ...props }) => {
   return (
     <GridStyled {...props} gutter={gutter}>
-      {Children.toArray(children).map((child) => {
-        return cloneElement(child, { gutter, ...props });
-      })}
+      {children}
     </GridStyled>
   );
 };

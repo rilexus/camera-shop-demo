@@ -4,7 +4,7 @@ import styled from "styled-components";
 import { ALIGN, JUSTIFY } from "../../../../ui/Flex";
 
 const Input = styled.input`
-  padding: 1.1em 3em 1em 0.5em;
+  padding: 1.1em 3em 1em 1em;
   font-size: 1rem;
   outline: none;
   margin-right: 1em;

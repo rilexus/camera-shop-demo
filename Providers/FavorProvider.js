@@ -1,11 +1,8 @@
-import createContextProvider from "./utils/createContextProvider";
+import createContext from "./utils/createContext";
 
-const Provider = createContextProvider((products = []) => {
-  console.log("Favoured products changed.", products);
-  return products;
-});
+const context = createContext([[], () => {}], "FavouredProductsProvider");
 
-const useFavouredProducts = Provider.useContext;
-const FavouredProductsProvider = Provider.Provider;
+const useFavouredProducts = context.useContext;
+const FavouredProductsProvider = context.Provider;
 
 export { useFavouredProducts, FavouredProductsProvider };

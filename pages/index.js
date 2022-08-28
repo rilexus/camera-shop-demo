@@ -1,12 +1,5 @@
-import styled from "styled-components";
-import {HomePage} from "../_pages";
-
-const S = styled.div`
-  color: red;
-`;
+import { HomePage } from "../_pages";
 
 export default function Home() {
-  return (
-    <HomePage/>
-  )
+  return <HomePage />;
 }

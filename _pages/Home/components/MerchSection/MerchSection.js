@@ -1,5 +1,5 @@
 import React from "react";
-import { Text } from "../../../../ui";
+import { Padding, Text } from "../../../../ui";
 import { MergeList } from "./components";
 
 const merges = [
@@ -35,12 +35,14 @@ const merges = [
 const MerchSection = () => {
   return (
     <section>
-      <Text align={"center"} as={"h1"}>
-        You can buy our merch
-      </Text>
-      <div>
-        <MergeList products={merges} />
-      </div>
+      <Padding padding={"10vh"}>
+        <Text align={"center"} as={"h1"}>
+          You can buy our merch
+        </Text>
+        <div>
+          <MergeList products={merges} />
+        </div>
+      </Padding>
     </section>
   );
 };

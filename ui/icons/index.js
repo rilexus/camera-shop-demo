@@ -1,3 +1,6 @@
+export { default as TwitterFilled } from "./TwitterFilled/TwitterFilled";
+export { default as InstagramFilled } from "./InstagramFilled/InstagramFilled";
+export { default as FacebookFilled } from "./FacebookFilled/FacebookFilled";
 export { default as EyeOutlined } from "./EyeOutlined/EyeOutlined";
 export { default as BagOutlined } from "./BagOutlined/BagOutlined";
 export { default as PersonOutlined } from "./PersonOutlined/PersonOutlined";

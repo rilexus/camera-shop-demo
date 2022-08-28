@@ -1,6 +1,7 @@
 import { createGlobalStyle } from "styled-components";
 import { ThemeProvider } from "../ui";
 import { FavouredProductsProvider } from "../Providers/FavorProvider";
+import { useState } from "react";
 
 const GlobalCSS = createGlobalStyle`
   html, body {
@@ -21,10 +22,12 @@ const t = {
 };
 
 function MyApp({ Component, pageProps }) {
+  const favouredProducts = useState([]);
+
   return (
     <ThemeProvider theme={t}>
       <GlobalCSS />
-      <FavouredProductsProvider>
+      <FavouredProductsProvider value={favouredProducts}>
         <Component {...pageProps} />
       </FavouredProductsProvider>
     </ThemeProvider>

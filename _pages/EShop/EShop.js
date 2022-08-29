@@ -1,10 +1,12 @@
 import React from "react";
-import { Container, Grid, Padding, Text } from "../../ui";
+import { Container, Grid as Row, Padding, Text } from "../../ui";
 import Layout from "../../components/Layout/Layout";
 import { Navigation } from "../../components";
-import styled from "styled-components";
+import styled, { useTheme } from "styled-components";
 import { colors } from "../../ui/theme/theme";
 import Footer from "../../components/Footer/Footer";
+import ProductTile from "./components/ProductTile/ProductTile";
+import { useProduct, useProducts } from "../../Providers/ProductsProvider";
 
 const P = styled.p`
   line-height: 1.45;
@@ -34,22 +36,29 @@ const Intro = () => {
 
 const HorizontalLine = styled.div`
   height: 1px;
-  border-bottom: 1px solid ${colors("gray.3")};
+  border-bottom: 1px solid ${colors("gray.1")};
 `;
 
-const ProductTile = ({ src, name, price }) => {
-  return (
-    <div>
-      <div>
-        <img src={src} alt="" />
-      </div>
-      <div>{name}</div>
-      <div>{price}</div>
-    </div>
-  );
+const StyledGrid = styled.div`
+  display: grid;
+  grid-gap: 3rem;
+  grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
+`;
+
+const Grid = ({ children }) => {
+  return <StyledGrid>{children}</StyledGrid>;
+};
+
+const Product = ({ id }) => {
+  const [prod] = useProduct(id);
+  return <ProductTile {...prod} />;
 };
 
 const EShop = () => {
+  const theme = useTheme();
+  const [prod] = useProducts();
+  const products = Object.values(prod);
+
   return (
     <Layout
       navigation={<Navigation />}
@@ -59,10 +68,23 @@ const EShop = () => {
             Home &gt; Shop
             <Intro />
             <HorizontalLine />
-            <Grid>
-              <Grid.Item sm={25}>asd</Grid.Item>
-              <Grid.Item sm={75}>asd</Grid.Item>
-            </Grid>
+            <Row>
+              <Row.Item
+                sm={25}
+                style={{
+                  borderRight: `1px solid ${colors("gray.1")({ theme })}`,
+                }}
+              />
+              <Row.Item sm={75}>
+                <Padding padding={"3em"}>
+                  <Grid>
+                    {products.map(({ id }) => {
+                      return <Product key={id} id={id} />;
+                    })}
+                  </Grid>
+                </Padding>
+              </Row.Item>
+            </Row>
           </Padding>
         </div>
       }

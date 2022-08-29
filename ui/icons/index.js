@@ -1,3 +1,4 @@
+export { default as StarOutlined } from "./StarOutlined/StarOutlined";
 export { default as TwitterFilled } from "./TwitterFilled/TwitterFilled";
 export { default as InstagramFilled } from "./InstagramFilled/InstagramFilled";
 export { default as FacebookFilled } from "./FacebookFilled/FacebookFilled";

@@ -10,68 +10,13 @@ import {
   Text,
   XStack,
 } from "../../../../../../ui";
-import { ALIGN, JUSTIFY } from "../../../../../../ui/Flex";
-import HeartOutlined from "../../../../../../ui/icons/HeartOutlined/HeartOutlined";
-import ButtonStyleless from "../../../../../../ui/buttons/ButtonStyleless/ButtonStyleless";
+import { JUSTIFY } from "../../../../../../ui/Flex";
 import ScrollableList from "../../../../../../ui/ScrollableList/ScrollableList";
-import { useFavouredProducts } from "../../../../../../Providers/FavorProvider";
-
-const Rating = ({ rating }) => {
-  const r = useMemo(
-    () => Array.from({ length: rating }).fill(StarFilled),
-    [rating]
-  );
-  return (
-    <div>
-      {r.map((C, idx) => {
-        return (
-          <C key={idx} height={"1.5em"} width={"1.5em"} fill={"#ecc40f"} />
-        );
-      })}
-    </div>
-  );
-};
-
-const HeartIcon = ({ type = "filled", ...props }) => {
-  return (
-    <>
-      {type === "filled" ? (
-        <HeartFilled {...props} height={"1.5em"} width={"1.5em"} fill={"red"} />
-      ) : null}
-      {type === "outlined" ? (
-        <HeartOutlined
-          {...props}
-          height={"1.5em"}
-          width={"1.5em"}
-          fill={"red"}
-        />
-      ) : null}
-    </>
-  );
-};
-
-const HeartButton = ({ type, ...props }) => {
-  return (
-    <ButtonStyleless {...props}>
-      <HeartIcon type={type} />
-    </ButtonStyleless>
-  );
-};
+import FavourButton from "../../../../../../components/FavourButton/FavourButton";
+import StarRating from "../../../../../../components/StarRating/StarRating";
 
 const MergeTile = ({ id, src, title, price, description, rating }) => {
   const [isOver, ref] = useMouseOver();
-  const [favouredProducts, setFavouredProducts] = useFavouredProducts();
-
-  const favored = favouredProducts.includes(id);
-
-  const favour = (id) => {
-    setFavouredProducts((old) => {
-      if (!favored) {
-        return [...old, id];
-      }
-      return old.filter((i) => id !== i);
-    });
-  };
 
   return (
     <div
@@ -83,14 +28,11 @@ const MergeTile = ({ id, src, title, price, description, rating }) => {
     >
       <Flex justify={JUSTIFY.center}>
         <Display on={isOver}>
-          <Rating rating={rating} />
+          <StarRating rating={rating} />
         </Display>
       </Flex>
       <Flex justify={JUSTIFY.end}>
-        <HeartButton
-          type={favored ? "filled" : "outlined"}
-          onClick={() => favour(id)}
-        />
+        <FavourButton id={id} />
       </Flex>
       <img src={src} alt="" width={"auto"} height={"100%"} />
       <Text align={"center"}>

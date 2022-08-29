@@ -22,6 +22,7 @@ const Home = () => {
           </Head>
           <main>
             <CaruselSection />
+
             <MerchSection />
             <WhoWeAreSection />
             <GallerySection />

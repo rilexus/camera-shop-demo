@@ -1,5 +1,5 @@
 import React from "react";
-import { Container, Grid as Row, Padding, Text } from "../../ui";
+import { Container, Flex, Grid as Row, Padding, Text } from "../../ui";
 import Layout from "../../components/Layout/Layout";
 import { Navigation } from "../../components";
 import styled, { useTheme } from "styled-components";
@@ -54,6 +54,143 @@ const Product = ({ id }) => {
   return <ProductTile {...prod} />;
 };
 
+const StyledLabel = styled.label`
+  display: block;
+  position: relative;
+  padding-left: 35px;
+  margin-bottom: 12px;
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+
+  /* Hide the browser's default checkbox */
+  input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+
+    &:checked ~ .checkmark {
+      border: 1px solid red;
+    }
+    &:checked ~ .checkmark:after {
+      display: block;
+    }
+  }
+
+  &:hover {
+    color: red;
+  }
+
+  &:hover .checkmark {
+    border: 1px solid red;
+  }
+
+  .checkmark:after {
+    left: 5px;
+    top: 1px;
+    width: 5px;
+    height: 10px;
+    border: solid red;
+    border-width: 0 2px 2px 0;
+    transform: rotate(45deg);
+  }
+`;
+
+const StyledCheckmark = styled.span`
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 16px;
+  width: 16px;
+  background-color: transparent;
+
+  border: 1px solid black;
+
+  &:after {
+    content: "";
+    position: absolute;
+    display: none;
+  }
+`;
+
+const Checkbox = ({ id, name, label, checked }) => {
+  return (
+    <StyledLabel htmlFor={id}>
+      <span>{label}</span>
+      <input type="checkbox" id={id} name={name} checked={checked} />
+      <StyledCheckmark className={"checkmark"} />
+    </StyledLabel>
+  );
+};
+const Details = ({ children }) => {
+  return <details>{children}</details>;
+};
+
+const StyledSummary = styled.summary`
+  margin-bottom: 1em;
+  cursor: pointer;
+`;
+
+const PriceInput = styled.input`
+  box-sizing: border-box;
+  width: 5em;
+  border: 1px solid black;
+  outline: none;
+  padding: 0.5em 1em;
+
+  &:hover {
+    border: 1px solid red;
+  }
+  &:focus {
+    border: 1px solid red;
+  }
+`;
+
+const Sidebar = () => {
+  return (
+    <Padding padding={"3em 0 0 2em"}>
+      <Details>
+        <StyledSummary>Brand</StyledSummary>
+        <Checkbox id={"polaroid"} name={"polaroid"} label={"Polaroid"} />
+        <Checkbox id={"fujiFilm"} name={"fujiFilm"} label={"FujiFilm"} />
+        <Checkbox
+          id={"lomoInstant"}
+          name={"lomoInstant"}
+          label={"Lomo Instant"}
+        />
+        <Padding padding={"1em 0 0 0"} />
+      </Details>
+      <Details>
+        <StyledSummary>Colors</StyledSummary>
+        <Checkbox id={"white"} name={"white"} label={"White"} />
+        <Checkbox id={"black"} name={"black"} label={"Black"} />
+        <Checkbox id={"blue"} name={"blue"} label={"Blue"} />
+        <Checkbox id={"gold"} name={"gold"} label={"Gold"} />
+        <Padding padding={"1em 0 0 0"} />
+      </Details>
+      <Details>
+        <StyledSummary>Condition</StyledSummary>
+        <Checkbox id={"new"} name={"new"} label={"New"} />
+        <Checkbox id={"used"} name={"used"} label={"Used"} />
+        <Padding padding={"1em 0 0 0"} />
+      </Details>
+      <Details>
+        <StyledSummary>Price</StyledSummary>
+        <Flex wrap={"wrap"} align={"center"}>
+          <PriceInput type="number" min={0} placeholder={"Min"} />
+          <Padding padding={"0 .3em 0 .3em"}>-</Padding>
+          <PriceInput type="number" placeholder={"max"} />
+        </Flex>
+        <Padding padding={"1em 0 0 0"} />
+      </Details>
+    </Padding>
+  );
+};
+
 const EShop = () => {
   const theme = useTheme();
   const [prod] = useProducts();
@@ -70,12 +207,15 @@ const EShop = () => {
             <HorizontalLine />
             <Row>
               <Row.Item
-                sm={25}
+                sm={15}
+                md={20}
                 style={{
                   borderRight: `1px solid ${colors("gray.1")({ theme })}`,
                 }}
-              />
-              <Row.Item sm={75}>
+              >
+                <Sidebar />
+              </Row.Item>
+              <Row.Item sm={85} md={80}>
                 <Padding padding={"3em"}>
                   <Grid>
                     {products.map(({ id }) => {

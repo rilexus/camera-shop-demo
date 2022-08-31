@@ -1,5 +1,5 @@
 import React from "react";
-import { Checkbox, Container, Flex, Padding, Text } from "../../ui";
+import { Checkbox, Flex, Padding, Text } from "../../ui";
 import Layout from "../../components/Layout/Layout";
 import { Navigation } from "../../components";
 import styled, { useTheme } from "styled-components";
@@ -8,29 +8,33 @@ import Footer from "../../components/Footer/Footer";
 import ProductTile from "./components/ProductTile/ProductTile";
 import { useProduct, useProducts } from "../../Providers/ProductsProvider";
 import Link from "next/link";
+import { l, md, sm, xl } from "../../ui/css/medias";
+import { useRouter } from "next/router";
 
-const P = styled.p`
+const Description = styled.p`
   line-height: 1.45;
-  padding: 1em 10em;
+  padding-bottom: 3em;
 `;
 
-const Intro = () => {
+const Container = styled.div`
+  width: 100%;
+  margin-right: auto;
+  margin-left: auto;
+  ${sm`
+    max-width: 540px
+  `}
+  ${md`
+    max-width: 720px;
+  `}
+`;
+
+const Intro = ({ title, description }) => {
   return (
     <Container>
-      <Padding padding={"4em 0"}>
-        <Text align={"center"}>
-          <h1>Instant film cameras</h1>
-          <P>
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Commodi
-            esse facere fuga laborum minima sint voluptate! Blanditiis dicta
-            enim esse explicabo libero necessitatibus, nihil qui quo quos totam
-            vitae, voluptas! Lorem ipsum dolor sit amet, consectetur adipisicing
-            elit. Ad deserunt ea labore, maxime nisi nulla repudiandae suscipit
-            voluptate? Doloremque ea eaque expedita, iure minima odit quisquam
-            quo sint soluta voluptatum.
-          </P>
-        </Text>
-      </Padding>
+      <Text align={"center"}>
+        <h1>{title}</h1>
+        <Description>{description}</Description>
+      </Text>
     </Container>
   );
 };
@@ -85,11 +89,69 @@ const PriceInput = styled.input`
   }
 `;
 
+const Detail = ({ summary, children }) => {
+  return (
+    <Details>
+      <StyledSummary>{summary}</StyledSummary>
+
+      <Padding padding={"0 0 1em 1em"}>{children}</Padding>
+    </Details>
+  );
+};
+
+const useQuery = (name) => {
+  const router = useRouter();
+  const query = router.query;
+  const queryValue = query[name] ? query[name].split(",") : [];
+
+  const set = (value) => {
+    if (value === "") {
+      const { [name]: remove, ...rest } = router.query;
+      router.query = rest;
+    } else {
+      router.query[name] = value;
+    }
+    router.push(router);
+  };
+
+  const add = (value) => {
+    const values = router.query[name].split(",");
+    router.query[name] = [...values, value].join(",");
+    router.push(router);
+  };
+
+  const remove = (value) => {
+    const values = router.query[name].split(",");
+    router.query[name] = values.filter((v) => value !== v).join(",");
+    router.push(router);
+  };
+
+  return [queryValue, { set, add, remove }];
+};
+
 const Sidebar = () => {
+  const [category, { set: setCategory }] = useQuery("category");
+  const [color, { set: setColor, add }] = useQuery("color");
+
   return (
     <Padding padding={"3em 0 0 2em"}>
-      <Details>
-        <StyledSummary>Brand</StyledSummary>
+      <Detail summary={"Category"}>
+        <Checkbox
+          checked={category?.includes("instant-cameras")}
+          onChange={(e) => {
+            const { checked } = e.target;
+            if (!checked) {
+              setCategory("");
+            } else {
+              setCategory("instant-cameras");
+            }
+          }}
+          id={"instant-cameras"}
+          name={"instant-cameras"}
+          label={"Instant Cameras"}
+        />
+      </Detail>
+      <Detail summary={"Brand"}>
         <Checkbox id={"polaroid"} name={"polaroid"} label={"Polaroid"} />
         <Checkbox id={"fujiFilm"} name={"fujiFilm"} label={"FujiFilm"} />
         <Checkbox
@@ -97,36 +159,55 @@ const Sidebar = () => {
           name={"lomoInstant"}
           label={"Lomo Instant"}
         />
-        <Padding padding={"1em 0 0 0"} />
-      </Details>
-      <Details>
-        <StyledSummary>Colors</StyledSummary>
-        <Checkbox id={"white"} name={"white"} label={"White"} />
-        <Checkbox id={"black"} name={"black"} label={"Black"} />
+      </Detail>
+      <Detail summary={"Colors"}>
+        <Checkbox
+          id={"white"}
+          name={"white"}
+          label={"White"}
+          checked={color?.includes("white")}
+          onChange={(e) => {
+            const { checked } = e.target;
+            if (!checked) {
+              setColor("");
+            } else {
+              setColor("white");
+            }
+          }}
+        />
+        <Checkbox
+          id={"black"}
+          name={"black"}
+          label={"Black"}
+          checked={color.includes("black")}
+          onChange={(e) => {
+            const { checked } = e.target;
+            if (!checked) {
+              setColor("");
+            } else {
+              setColor("black");
+            }
+          }}
+        />
         <Checkbox id={"blue"} name={"blue"} label={"Blue"} />
         <Checkbox id={"gold"} name={"gold"} label={"Gold"} />
-        <Padding padding={"1em 0 0 0"} />
-      </Details>
-      <Details>
-        <StyledSummary>Condition</StyledSummary>
+      </Detail>
+      <Detail summary={"Condition"}>
         <Checkbox id={"new"} name={"new"} label={"New"} />
         <Checkbox id={"used"} name={"used"} label={"Used"} />
-        <Padding padding={"1em 0 0 0"} />
-      </Details>
-      <Details>
-        <StyledSummary>Price</StyledSummary>
+      </Detail>
+      <Detail summary={"Price"}>
         <Flex wrap={"wrap"} align={"center"}>
           <PriceInput type="number" min={0} placeholder={"Min"} />
           <Padding padding={"0 .3em 0 .3em"}>-</Padding>
           <PriceInput type="number" placeholder={"max"} />
         </Flex>
-        <Padding padding={"1em 0 0 0"} />
-      </Details>
+      </Detail>
     </Padding>
   );
 };
 
-const EShop = () => {
+const EShop = ({ intro }) => {
   const theme = useTheme();
   const [prod] = useProducts();
   const products = Object.values(prod);
@@ -138,7 +219,7 @@ const EShop = () => {
         <div>
           <Padding padding={"6rem 0 0 0"}>
             Home &gt; Shop
-            <Intro />
+            <Intro title={intro.title} description={intro.description} />
             <HorizontalLine />
             <div
               style={{

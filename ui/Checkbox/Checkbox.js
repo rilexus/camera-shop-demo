@@ -64,11 +64,17 @@ const StyledCheckmark = styled.span`
   }
 `;
 
-const Checkbox = ({ id, name, label, checked }) => {
+const Checkbox = ({ id, name, label, checked, onChange }) => {
   return (
     <StyledLabel htmlFor={id}>
       <span>{label}</span>
-      <input type="checkbox" id={id} name={name} checked={checked} />
+      <input
+        type="checkbox"
+        id={id}
+        name={name}
+        checked={checked}
+        onChange={onChange}
+      />
       <StyledCheckmark className={"checkmark"} />
     </StyledLabel>
   );

@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import ProductPage from "../../_pages/ProductPage/Product.page";
-import products from "../../products";
+import { getProductById } from "../../products";
 import { ProductProvider } from "../../Providers/ProductsProvider";
 
 const Product = ({ id, ...props }) => {
@@ -16,29 +16,21 @@ const Product = ({ id, ...props }) => {
 export async function getServerSideProps(context) {
   const { id } = context.params;
 
-  if (!id) {
-    return {
-      props: {
-        id: null,
-        products: {},
-      },
-    };
+  const product = await getProductById(id);
+  const hasProducts = Object.keys(product).length > 0;
+
+  if (!hasProducts) {
+    context.res.writeHead(301, {
+      Location: "/" /* TODO create 404 page */,
+    });
+    context.res.end();
+    return true;
   }
 
-  const product = products[id];
-
-  if (!product) {
-    return {
-      props: {
-        id: null,
-        products: {},
-      },
-    };
-  }
   return {
     props: {
       id: id,
-      products: { [id]: products[id] },
+      products: product,
     },
   };
 }

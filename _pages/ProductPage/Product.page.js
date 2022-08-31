@@ -36,7 +36,13 @@ const Detail = ({ summary, children }) => {
 };
 
 const ProductPage = ({ id }) => {
-  const [{ src, name, rating, description, price }] = useProduct(id);
+  const [product = {}] = useProduct(id);
+
+  if (!product) {
+    console.log("RE-REOUTE");
+  }
+
+  const { src, name, rating, description, price } = product;
 
   return (
     <Layout

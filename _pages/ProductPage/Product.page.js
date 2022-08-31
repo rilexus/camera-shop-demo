@@ -20,6 +20,21 @@ const Summary = styled.summary`
   cursor: pointer;
 `;
 
+const Detail = ({ summary, children }) => {
+  return (
+    <Details>
+      <Summary>{summary}</Summary>
+      <div
+        style={{
+          padding: "0 0 2em 0",
+        }}
+      >
+        {children}
+      </div>
+    </Details>
+  );
+};
+
 const ProductPage = ({ id }) => {
   const [{ src, name, rating, description, price }] = useProduct(id);
 
@@ -30,8 +45,8 @@ const ProductPage = ({ id }) => {
         <Padding padding={"6em 0 0 0"}>
           <main>
             <Container>
-              <Grid gutter={"2em"}>
-                <Grid.Item md={40}>
+              <Grid gutter={"2.5em"}>
+                <Grid.Item md={60} l={40}>
                   <Flex justify={"center"}>
                     <StarRating rating={rating} />
                   </Flex>
@@ -39,50 +54,53 @@ const ProductPage = ({ id }) => {
                     <img width={"100%"} height={"auto"} src={src} alt="" />
                   </div>
                 </Grid.Item>
-                <Grid.Item md={60}>
-                  <div>
-                    <h1>{name}</h1>
+                <Grid.Item md={40} l={60}>
+                  <Padding padding={"2em 0 0 0"}>
                     <div
                       style={{
-                        position: "absolute",
-                        right: "0",
-                        top: "3em",
+                        position: "relative",
                       }}
                     >
-                      <FavourButton id={id} />
+                      <h1>{name}</h1>
+                      <div
+                        style={{
+                          position: "absolute",
+                          right: "0",
+                          top: "0",
+                        }}
+                      >
+                        <FavourButton id={id} />
+                      </div>
+                      <p>
+                        <span>Price: </span>
+                        <span>{price}</span>
+                      </p>
+                      <p>
+                        <span>{description}</span>
+                      </p>
+                      <LargeButton>Add to cart</LargeButton>
                     </div>
-                    <p>
-                      <span>Price: </span>
-                      <span>{price}</span>
-                    </p>
-                    <p>
-                      <span>{description}</span>
-                    </p>
-                    <LargeButton>Add to cart</LargeButton>
-                  </div>
+                  </Padding>
                 </Grid.Item>
                 <Grid.Item>
-                  <Details>
-                    <Summary>Details</Summary>
+                  <Detail summary={"Details"}>
                     Lorem ipsum dolor sit amet, consectetur adipisicing elit.
                     Dignissimos excepturi modi officiis omnis perferendis
                     reiciendis soluta totam unde. Accusamus doloribus eaque et
                     iusto magni modi nihil officiis qui similique tempore.
-                  </Details>
-                  <Details>
-                    <Summary>Reviews</Summary>
+                  </Detail>
+                  <Detail summary={"Reviews"}>
                     Lorem ipsum dolor sit amet, consectetur adipisicing elit.
                     Dignissimos excepturi modi officiis omnis perferendis
                     reiciendis soluta totam unde. Accusamus doloribus eaque et
                     iusto magni modi nihil officiis qui similique tempore.
-                  </Details>
-                  <Details>
-                    <Summary>Delivery & Payment</Summary>
+                  </Detail>
+                  <Detail summary={"Delivery & Payment"}>
                     Lorem ipsum dolor sit amet, consectetur adipisicing elit.
                     Dignissimos excepturi modi officiis omnis perferendis
                     reiciendis soluta totam unde. Accusamus doloribus eaque et
                     iusto magni modi nihil officiis qui similique tempore.
-                  </Details>
+                  </Detail>
                 </Grid.Item>
               </Grid>
             </Container>

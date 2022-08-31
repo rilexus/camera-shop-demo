@@ -7,6 +7,7 @@ import { colors } from "../../ui/theme/theme";
 import Footer from "../../components/Footer/Footer";
 import ProductTile from "./components/ProductTile/ProductTile";
 import { useProduct, useProducts } from "../../Providers/ProductsProvider";
+import Link from "next/link";
 
 const P = styled.p`
   line-height: 1.45;
@@ -51,7 +52,13 @@ const Grid = ({ children }) => {
 
 const Product = ({ id }) => {
   const [prod] = useProduct(id);
-  return <ProductTile {...prod} />;
+  return (
+    <Link href={{ pathname: `/product/${prod.id}` }}>
+      <a>
+        <ProductTile {...prod} />
+      </a>
+    </Link>
+  );
 };
 
 const Details = ({ children }) => {

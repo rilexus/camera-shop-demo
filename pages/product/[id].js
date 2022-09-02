@@ -17,7 +17,9 @@ export async function getServerSideProps(context) {
   const { id } = context.params;
 
   const product = await getProductById(id);
+
   const hasProducts = Object.keys(product).length > 0;
+  console.log({ id, product });
 
   if (!hasProducts) {
     context.res.writeHead(301, {

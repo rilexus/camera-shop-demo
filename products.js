@@ -1,16 +1,8 @@
-import { v4 as uuid } from "uuid";
-
-const ids = Array.from({ length: 5 }, () => uuid());
-
-const productsByCategory = {
-  "instant-cameras": [ids[0], ids[1], ids[2], ids[3], ids[4]],
-  "analog-cameras": [],
-};
-
 const products = {
-  [ids[0]]: {
-    id: ids[0],
+  1: {
+    id: 1,
     category: "instant-camera",
+    condition: "used",
     rating: 4,
     src: "/polaroid_400x400.png",
     price: "300$",
@@ -20,9 +12,10 @@ const products = {
     description:
       "Accusamus aperiam atque aut beatae culpa dolores, enim exercitationem nemo nesciunt nihil nostrum odio possimus quo ratione rem sed velit veniam voluptatum!",
   },
-  [ids[1]]: {
-    id: ids[1],
+  2: {
+    id: 2,
     category: "instant-camera",
+    condition: "new",
     rating: 5,
     src: "/intex_sq_400x400.png",
     price: "300$",
@@ -32,9 +25,10 @@ const products = {
     description:
       "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolores facere illo in laudantium maiores necessitatibus optio quos tempore unde voluptates? Autem distinctio ipsum, maiores maxime nulla similique voluptas? Accusamus, reiciendis.",
   },
-  [ids[2]]: {
-    id: ids[2],
+  3: {
+    id: 3,
     category: "instant-camera",
+    condition: "used",
     rating: 4,
     src: "/intax_mini_400x400.png",
     price: "300$",
@@ -45,9 +39,10 @@ const products = {
       "Accusantium aperiam cum deleniti, distinctio ducimus earum excepturi laborum magni maxime minima natus nesciunt nihil numquam odio omnis, quia quidem quo reprehenderit.",
   },
 
-  [ids[3]]: {
-    id: ids[3],
+  4: {
+    id: 4,
     category: "instant-camera",
+    condition: "new",
     rating: 5,
     src: "/polaroid_400x400.png",
     price: "300$",
@@ -57,9 +52,10 @@ const products = {
     description:
       "Accusamus aperiam atque aut beatae culpa dolores, enim exercitationem nemo nesciunt nihil nostrum odio possimus quo ratione rem sed velit veniam voluptatum!",
   },
-  [ids[4]]: {
-    id: ids[4],
+  5: {
+    id: 5,
     category: "instant-camera",
+    condition: "used",
     rating: 5,
     src: "/intex_sq_400x400.png",
     price: "300$",
@@ -69,9 +65,10 @@ const products = {
     description:
       "Accusamus aperiam atque aut beatae culpa dolores, enim exercitationem nemo nesciunt nihil nostrum odio possimus quo ratione rem sed velit veniam voluptatum!",
   },
-  5: {
-    id: 5,
+  6: {
+    id: 6,
     category: "analog-camera",
+    condition: "new",
     rating: 3,
     src: "/intax_mini_400x400.png",
     price: "300$",
@@ -83,18 +80,72 @@ const products = {
   },
 };
 
+const filter = (products, filterObject) => {
+  const filterKeys = Object.keys(filterObject);
+
+  if (filterKeys.length === 0) {
+    return products;
+  }
+  // look for the based on the first filter
+  const filterKey = filterKeys[0];
+
+  const p = Object.values(products).reduce((acc, product) => {
+    if (!(filterKey in product)) return acc;
+    if (Array.isArray(filterObject[filterKey])) {
+      if (filterObject[filterKey].length === 0) {
+        return {
+          ...acc,
+          [product.id]: product,
+        };
+      }
+      if (filterObject[filterKey].includes(product[filterKey])) {
+        return {
+          ...acc,
+          [product.id]: product,
+        };
+      }
+    }
+    if (product[filterKey] === filterObject[filterKey]) {
+      return {
+        ...acc,
+        [product.id]: product,
+      };
+    }
+    return acc;
+  }, {});
+
+  // remove first key and filter "p" again with the restFilters
+  const { [filterKey]: remove, ...restFilters } = filterObject;
+  return filter(p, restFilters);
+};
+
 const getProductsByCategory = async (category) => {
   if (!category) {
     return {};
   }
-  if (!(category in productsByCategory)) {
-    return {};
-  }
+  return Object.values(products).reduce((acc, product) => {
+    if (!(category in product)) {
+      return acc;
+    }
 
-  return productsByCategory[category].reduce((acc, id) => {
     return {
       ...acc,
-      [id]: products[id],
+      [product.id]: product,
+    };
+  }, {});
+};
+
+const getByColors = async (products, colors) => {
+  if (colors === "") {
+    return products;
+  }
+  return Object.values(products).reduce((acc, product) => {
+    if (!colors.includes(product.color)) {
+      return acc;
+    }
+    return {
+      ...acc,
+      [product.id]: product,
     };
   }, {});
 };
@@ -137,6 +188,12 @@ const getProductById = async (id) => {
   return getProductsByIds([id]);
 };
 
-export { getProductsByCategory, getProductById, getProductsByColor };
+export {
+  getProductsByCategory,
+  getProductById,
+  getProductsByColor,
+  getByColors,
+  filter,
+};
 
 export default products;

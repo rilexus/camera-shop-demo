@@ -10,6 +10,7 @@ import { useProduct, useProducts } from "../../Providers/ProductsProvider";
 import Link from "next/link";
 import { l, md, sm, xl } from "../../ui/css/medias";
 import { useRouter } from "next/router";
+import { QueryCheckbox } from "./components";
 
 const Description = styled.p`
   line-height: 1.45;
@@ -99,102 +100,86 @@ const Detail = ({ summary, children }) => {
   );
 };
 
-const useQuery = (name) => {
-  const router = useRouter();
-  const query = router.query;
-  const queryValue = query[name] ? query[name].split(",") : [];
-
-  const set = (value) => {
-    if (value === "") {
-      const { [name]: remove, ...rest } = router.query;
-      router.query = rest;
-    } else {
-      router.query[name] = value;
-    }
-    router.push(router);
-  };
-
-  const add = (value) => {
-    const values = router.query[name].split(",");
-    router.query[name] = [...values, value].join(",");
-    router.push(router);
-  };
-
-  const remove = (value) => {
-    const values = router.query[name].split(",");
-    router.query[name] = values.filter((v) => value !== v).join(",");
-    router.push(router);
-  };
-
-  return [queryValue, { set, add, remove }];
-};
-
 const Sidebar = () => {
-  const [category, { set: setCategory }] = useQuery("category");
-  const [color, { set: setColor, add }] = useQuery("color");
-
   return (
     <Padding padding={"3em 0 0 2em"}>
       <Detail summary={"Category"}>
-        <Checkbox
-          checked={category?.includes("instant-cameras")}
-          onChange={(e) => {
-            const { checked } = e.target;
-            if (!checked) {
-              setCategory("");
-            } else {
-              setCategory("instant-cameras");
-            }
-          }}
+        <QueryCheckbox
+          queryKey={"category"}
+          value={"instant-camera"}
           id={"instant-cameras"}
           name={"instant-cameras"}
           label={"Instant Cameras"}
         />
       </Detail>
       <Detail summary={"Brand"}>
-        <Checkbox id={"polaroid"} name={"polaroid"} label={"Polaroid"} />
-        <Checkbox id={"fujiFilm"} name={"fujiFilm"} label={"FujiFilm"} />
-        <Checkbox
+        <QueryCheckbox
+          id={"polaroid"}
+          name={"polaroid"}
+          label={"Polaroid"}
+          queryKey={"brand"}
+          value={"Polaroid"}
+        />
+        <QueryCheckbox
+          id={"fujiFilm"}
+          name={"fujiFilm"}
+          label={"FujiFilm"}
+          queryKey={"brand"}
+          value={"FujiFilm"}
+        />
+        <QueryCheckbox
           id={"lomoInstant"}
           name={"lomoInstant"}
           label={"Lomo Instant"}
+          queryKey={"brand"}
+          value={"Lomo Instant"}
         />
       </Detail>
       <Detail summary={"Colors"}>
-        <Checkbox
+        <QueryCheckbox
           id={"white"}
           name={"white"}
           label={"White"}
-          checked={color?.includes("white")}
-          onChange={(e) => {
-            const { checked } = e.target;
-            if (!checked) {
-              setColor("");
-            } else {
-              setColor("white");
-            }
-          }}
+          queryKey={"color"}
+          value={"white"}
         />
-        <Checkbox
+        <QueryCheckbox
           id={"black"}
           name={"black"}
           label={"Black"}
-          checked={color.includes("black")}
-          onChange={(e) => {
-            const { checked } = e.target;
-            if (!checked) {
-              setColor("");
-            } else {
-              setColor("black");
-            }
-          }}
+          queryKey={"color"}
+          value={"black"}
         />
-        <Checkbox id={"blue"} name={"blue"} label={"Blue"} />
-        <Checkbox id={"gold"} name={"gold"} label={"Gold"} />
+        <QueryCheckbox
+          id={"blue"}
+          name={"blue"}
+          label={"Blue"}
+          queryKey={"color"}
+          value={"blue"}
+        />
+        <QueryCheckbox
+          id={"gold"}
+          name={"gold"}
+          label={"Gold"}
+          queryKey={"color"}
+          value={"gold"}
+        />
       </Detail>
       <Detail summary={"Condition"}>
-        <Checkbox id={"new"} name={"new"} label={"New"} />
-        <Checkbox id={"used"} name={"used"} label={"Used"} />
+        <QueryCheckbox
+          id={"new"}
+          name={"new"}
+          label={"New"}
+          queryKey={"condition"}
+          value={"new"}
+        />
+        <QueryCheckbox
+          id={"used"}
+          name={"used"}
+          label={"Used"}
+          queryKey={"condition"}
+          value={"used"}
+        />
       </Detail>
       <Detail summary={"Price"}>
         <Flex wrap={"wrap"} align={"center"}>

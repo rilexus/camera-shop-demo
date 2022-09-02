@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { EShopPage } from "../_pages";
 import { ProductProvider } from "../Providers/ProductsProvider";
-import { getProductsByCategory } from "../products";
+import { filter, getByColors, getProductsByCategory } from "../products";
 import products from "../products";
 
 const Shop = ({ products, intro }) => {
@@ -18,8 +18,14 @@ const Shop = ({ products, intro }) => {
   );
 };
 
+const parseQuery = (query) => {
+  return query.split(",").filter(Boolean);
+};
+
 export async function getServerSideProps(context) {
-  if (Object.values(context.query).length === 0) {
+  const query = context.query;
+
+  if (Object.values(query).length === 0) {
     return {
       props: {
         products,
@@ -31,13 +37,26 @@ export async function getServerSideProps(context) {
       },
     };
   }
-  const { category } = context.query;
+  const {
+    category = "",
+    color = "",
+    brand = "",
+    condition = "",
+  } = context.query;
+  const parsedColor = parseQuery(color); // ['white', 'black']
+  const parsedBrand = parseQuery(brand);
+  const parsedCondition = parseQuery(condition);
 
-  const prods = await getProductsByCategory(category);
+  const queriedProducts = filter(products, {
+    category,
+    color: parsedColor,
+    brand: parsedBrand,
+    condition: parsedCondition,
+  });
 
   return {
     props: {
-      products: prods,
+      products: queriedProducts,
       intro: {
         title: "Film Cameras",
         description:

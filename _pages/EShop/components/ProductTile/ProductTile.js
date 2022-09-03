@@ -16,15 +16,10 @@ const BG = styled.div`
   }
 `;
 
-const ProductTile = ({ id, src, name, price, rating }) => {
+const ProductTile = ({ id, src, name, price, rating, Link }) => {
   return (
     <BG>
       <Padding padding={"1.5em"}>
-        <Flex justify={JUSTIFY.center}>
-          <Padding padding={"0 0 1em 0"}>
-            <StarRating rating={rating} />
-          </Padding>
-        </Flex>
         <div
           style={{
             position: "absolute",
@@ -34,31 +29,42 @@ const ProductTile = ({ id, src, name, price, rating }) => {
         >
           <FavourButton id={id} />
         </div>
-        <Flex justify={"center"} align={"center"}>
-          <img
-            width={"80%"}
-            height={"80%"}
-            style={{
-              objectFit: "cover",
-            }}
-            src={src}
-            alt=""
-          />
-        </Flex>
-        <Padding padding={"2em 0 0 0"}>
-          <Text align={"center"}>
-            <Padding padding={"0 0 .5em 0"}>
-              <div
-                style={{
-                  fontSize: "1.3rem",
-                }}
-              >
-                {name}
-              </div>
+        <Link
+          style={{
+            cursor: "pointer",
+          }}
+        >
+          <Flex justify={JUSTIFY.center}>
+            <Padding padding={"0 0 1em 0"}>
+              <StarRating rating={rating} />
             </Padding>
-            <div>{price}</div>
-          </Text>
-        </Padding>
+          </Flex>
+          <Flex justify={"center"} align={"center"}>
+            <img
+              width={"80%"}
+              height={"80%"}
+              style={{
+                objectFit: "cover",
+              }}
+              src={src}
+              alt=""
+            />
+          </Flex>
+          <Padding padding={"2em 0 0 0"}>
+            <Text align={"center"}>
+              <Padding padding={"0 0 .5em 0"}>
+                <div
+                  style={{
+                    fontSize: "1.3rem",
+                  }}
+                >
+                  {name}
+                </div>
+              </Padding>
+              <div>{price}</div>
+            </Text>
+          </Padding>
+        </Link>
       </Padding>
     </BG>
   );

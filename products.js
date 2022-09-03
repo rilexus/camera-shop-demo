@@ -1,12 +1,12 @@
 const reviews = {
   1: {
     user: "Stan",
-    rating: 4,
+    rating: "4",
     text: "Corporis culpa ducimus ipsum non quod sequi voluptates. Assumenda cupiditate eum facere facilis fuga harum, non odit porro provident tenetur totam ullam!",
   },
   2: {
     user: "Peter",
-    rating: 5,
+    rating: "5",
     text: "Inventore repudiandae, vero. Dolores doloribus dolorum fuga id itaque minus nisi, numquam officia quos sunt. Facere in maiores modi pariatur possimus unde.",
   },
   3: {
@@ -18,9 +18,9 @@ const reviews = {
 
 const products = {
   1: {
-    id: 1,
+    id: "1",
     category: "instant-camera",
-    reviews: [1, 2, 3],
+    reviews: ["1", "2", "3"],
     condition: "used",
     rating: 4,
     src: "/polaroid_400x400.png",
@@ -32,8 +32,8 @@ const products = {
       "Accusamus aperiam atque aut beatae culpa dolores, enim exercitationem nemo nesciunt nihil nostrum odio possimus quo ratione rem sed velit veniam voluptatum!",
   },
   2: {
-    id: 2,
-    reviews: [1, 2],
+    id: "2",
+    reviews: ["1", "2"],
     category: "instant-camera",
     condition: "new",
     rating: 5,
@@ -46,7 +46,7 @@ const products = {
       "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolores facere illo in laudantium maiores necessitatibus optio quos tempore unde voluptates? Autem distinctio ipsum, maiores maxime nulla similique voluptas? Accusamus, reiciendis.",
   },
   3: {
-    id: 3,
+    id: "3",
     reviews: [1],
     category: "instant-camera",
     condition: "used",
@@ -61,7 +61,7 @@ const products = {
   },
 
   4: {
-    id: 4,
+    id: "4",
     reviews: [],
     category: "instant-camera",
     condition: "new",
@@ -75,8 +75,8 @@ const products = {
       "Accusamus aperiam atque aut beatae culpa dolores, enim exercitationem nemo nesciunt nihil nostrum odio possimus quo ratione rem sed velit veniam voluptatum!",
   },
   5: {
-    id: 5,
-    reviews: [1, 2, 3],
+    id: "5",
+    reviews: ["1", "2", "3"],
     category: "instant-camera",
     condition: "used",
     rating: 5,
@@ -89,8 +89,8 @@ const products = {
       "Accusamus aperiam atque aut beatae culpa dolores, enim exercitationem nemo nesciunt nihil nostrum odio possimus quo ratione rem sed velit veniam voluptatum!",
   },
   6: {
-    id: 6,
-    reviews: [1, 2, 3],
+    id: "6",
+    reviews: ["1", "2", "3"],
     category: "analog-camera",
     condition: "new",
     rating: 3,
@@ -103,8 +103,8 @@ const products = {
       "Accusamus aperiam atque aut beatae culpa dolores, enim exercitationem nemo nesciunt nihil nostrum odio possimus quo ratione rem sed velit veniam voluptatum!",
   },
   7: {
-    id: 7,
-    reviews: [2],
+    id: "7",
+    reviews: ["2"],
     category: "merge",
     condition: "new",
     rating: 4,
@@ -117,8 +117,8 @@ const products = {
       "Accusamus aperiam atque aut beatae culpa dolores, enim exercitationem nemo nesciunt nihil nostrum odio possimus quo ratione rem sed velit veniam voluptatum!",
   },
   8: {
-    id: 8,
-    reviews: [1, 2, 3],
+    id: "8",
+    reviews: ["1", "2", "3"],
     category: "merge",
     condition: "new",
     rating: 4,
@@ -131,8 +131,8 @@ const products = {
       "Accusamus aperiam atque aut beatae culpa dolores, enim exercitationem nemo nesciunt nihil nostrum odio possimus quo ratione rem sed velit veniam voluptatum!",
   },
   9: {
-    id: 9,
-    reviews: [1, 2, 3],
+    id: "9",
+    reviews: ["1", "2", "3"],
     category: "merge",
     condition: "new",
     rating: 4,

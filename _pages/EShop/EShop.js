@@ -56,13 +56,19 @@ const Grid = ({ children }) => {
 };
 
 const Product = ({ id }) => {
-  const [prod] = useProduct(id);
+  const [product] = useProduct(id);
+
   return (
-    <Link href={{ pathname: `/product/${prod.id}` }}>
-      <a>
-        <ProductTile {...prod} />
-      </a>
-    </Link>
+    <ProductTile
+      {...product}
+      Link={({ children }) => {
+        return (
+          <Link href={`/product/${id}`}>
+            <a>{children}</a>
+          </Link>
+        );
+      }}
+    />
   );
 };
 

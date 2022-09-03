@@ -151,7 +151,7 @@ const Navigation = () => {
       main={
         <XStack>
           <span>
-            <Link href={"/shop?category=instant-camera"}>Shop</Link>
+            <Link href={"/shop"}>Shop</Link>
           </span>
           <span>Services</span>
           <span>Custom</span>

@@ -11,6 +11,7 @@ import { colors } from "../../ui/theme/theme";
 import { Counter } from "./components/Counter";
 import { JUSTIFY } from "../../ui/Flex";
 import { useCart } from "../../Providers/CartProvider/CartProvider";
+import { useFavouredProducts } from "../../Providers/FavorProvider";
 
 const Details = styled.details`
   margin-bottom: 2em;
@@ -97,8 +98,7 @@ const Info = ({ id }) => {
 
 const ProductPage = ({ id }) => {
   const [product = {}] = useProduct(id);
-
-  const { src, name, rating, description, price } = product;
+  const { src, rating } = product;
 
   return (
     <Layout

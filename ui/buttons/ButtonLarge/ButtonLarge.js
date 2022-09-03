@@ -19,6 +19,7 @@ const Button = styled.button`
     border: 2px solid blue;
     color: blue;
   }
+  white-space: nowrap;
 `;
 
 const ButtonLarge = (props) => {

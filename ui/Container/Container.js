@@ -1,10 +1,13 @@
 import styled from "styled-components";
-import { l, md, sm, xl } from "../css/medias";
+import { l, md, sm, xl, xsm } from "../css/medias";
 
 const Container = styled.div`
-  width: 100%;
   margin-right: auto;
   margin-left: auto;
+  width: 100%;
+  ${xsm`
+    width: 95%;
+  `}
   ${sm`
     max-width: 540px
   `}

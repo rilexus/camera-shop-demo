@@ -102,9 +102,9 @@ const ProductPage = ({ id }) => {
                   </div>
                 </Grid.Item>
                 <Grid.Item md={40} l={60}>
-                  <Padding
-                    padding={"2em 0 3em 0"}
+                  <div
                     style={{
+                      minHeight: "300px",
                       height: "100%",
                     }}
                   >
@@ -114,7 +114,7 @@ const ProductPage = ({ id }) => {
                       description={description}
                       name={name}
                     />
-                  </Padding>
+                  </div>
                 </Grid.Item>
                 <Grid.Item>
                   <Detail summary={"Details"}>

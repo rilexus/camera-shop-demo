@@ -1,7 +1,26 @@
+const reviews = {
+  1: {
+    user: "Stan",
+    rating: 4,
+    text: "Corporis culpa ducimus ipsum non quod sequi voluptates. Assumenda cupiditate eum facere facilis fuga harum, non odit porro provident tenetur totam ullam!",
+  },
+  2: {
+    user: "Peter",
+    rating: 5,
+    text: "Inventore repudiandae, vero. Dolores doloribus dolorum fuga id itaque minus nisi, numquam officia quos sunt. Facere in maiores modi pariatur possimus unde.",
+  },
+  3: {
+    user: "Frank",
+    rating: 4,
+    text: "Delectus deserunt iusto quae vitae. Aliquid consequatur debitis dolor dolore eius facilis maiores minus natus possimus quas, quibusdam reiciendis repellendus vitae voluptates.",
+  },
+};
+
 const products = {
   1: {
     id: 1,
     category: "instant-camera",
+    reviews: [1, 2, 3],
     condition: "used",
     rating: 4,
     src: "/polaroid_400x400.png",
@@ -14,6 +33,7 @@ const products = {
   },
   2: {
     id: 2,
+    reviews: [1, 2],
     category: "instant-camera",
     condition: "new",
     rating: 5,
@@ -27,6 +47,7 @@ const products = {
   },
   3: {
     id: 3,
+    reviews: [1],
     category: "instant-camera",
     condition: "used",
     rating: 4,
@@ -41,6 +62,7 @@ const products = {
 
   4: {
     id: 4,
+    reviews: [],
     category: "instant-camera",
     condition: "new",
     rating: 5,
@@ -54,6 +76,7 @@ const products = {
   },
   5: {
     id: 5,
+    reviews: [1, 2, 3],
     category: "instant-camera",
     condition: "used",
     rating: 5,
@@ -67,6 +90,7 @@ const products = {
   },
   6: {
     id: 6,
+    reviews: [1, 2, 3],
     category: "analog-camera",
     condition: "new",
     rating: 3,
@@ -80,6 +104,7 @@ const products = {
   },
   7: {
     id: 7,
+    reviews: [2],
     category: "merge",
     condition: "new",
     rating: 4,
@@ -93,6 +118,7 @@ const products = {
   },
   8: {
     id: 8,
+    reviews: [1, 2, 3],
     category: "merge",
     condition: "new",
     rating: 4,
@@ -106,6 +132,7 @@ const products = {
   },
   9: {
     id: 9,
+    reviews: [1, 2, 3],
     category: "merge",
     condition: "new",
     rating: 4,

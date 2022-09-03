@@ -33,7 +33,14 @@ const Counter = ({ onChange, value, min = 0, step = 1 }) => {
 
   return (
     <Flex justify={"center"} align={"center"}>
-      <SquareButton onClick={dec}>-</SquareButton>
+      <SquareButton
+        style={{
+          borderRight: "none",
+        }}
+        onClick={dec}
+      >
+        -
+      </SquareButton>
       <StyledInput
         type="number"
         step={1}
@@ -41,7 +48,14 @@ const Counter = ({ onChange, value, min = 0, step = 1 }) => {
         value={value}
         onChange={onChange}
       />
-      <SquareButton onClick={inc}>+</SquareButton>
+      <SquareButton
+        style={{
+          borderLeft: "none",
+        }}
+        onClick={inc}
+      >
+        +
+      </SquareButton>
     </Flex>
   );
 };

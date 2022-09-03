@@ -4,6 +4,7 @@ import { FavouredProductsProvider } from "../Providers/FavorProvider";
 import { useState } from "react";
 import { ProductProvider } from "../Providers/ProductsProvider";
 import products from "../products";
+import { CartProvider } from "../Providers/CartProvider/CartProvider";
 
 const GlobalCSS = createGlobalStyle`
   html, body {
@@ -26,14 +27,17 @@ const t = {
 function MyApp({ Component, pageProps }) {
   const favouredProducts = useState([]);
   const prod = useState(products);
+  const cartState = useState({});
 
   return (
     <ThemeProvider theme={t}>
       <GlobalCSS />
       <ProductProvider value={prod}>
-        <FavouredProductsProvider value={favouredProducts}>
-          <Component {...pageProps} />
-        </FavouredProductsProvider>
+        <CartProvider value={cartState}>
+          <FavouredProductsProvider value={favouredProducts}>
+            <Component {...pageProps} />
+          </FavouredProductsProvider>
+        </CartProvider>
       </ProductProvider>
     </ThemeProvider>
   );

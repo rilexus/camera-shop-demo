@@ -10,6 +10,7 @@ import styled from "styled-components";
 import { colors } from "../../ui/theme/theme";
 import { Counter } from "./components/Counter";
 import { JUSTIFY } from "../../ui/Flex";
+import { useCart } from "../../Providers/CartProvider/CartProvider";
 
 const Details = styled.details`
   margin-bottom: 2em;
@@ -39,6 +40,7 @@ const Detail = ({ summary, children }) => {
 
 const Info = ({ name, id, price, description }) => {
   const [counter, setCounter] = useState(1);
+  const [, { addProduct }] = useCart();
   return (
     <Flex
       direction={"column"}
@@ -74,7 +76,17 @@ const Info = ({ name, id, price, description }) => {
             setCounter(e.target.value);
           }}
         />
-        <LargeButton>Add to cart</LargeButton>
+        <LargeButton
+          onClick={() => {
+            addProduct({ id, count: counter });
+            setCounter(1);
+          }}
+          style={{
+            marginLeft: "1em",
+          }}
+        >
+          Add to cart
+        </LargeButton>
       </Flex>
     </Flex>
   );
@@ -116,6 +128,7 @@ const ProductPage = ({ id }) => {
                     />
                   </div>
                 </Grid.Item>
+
                 <Grid.Item>
                   <Detail summary={"Details"}>
                     Lorem ipsum dolor sit amet, consectetur adipisicing elit.

@@ -33,6 +33,7 @@ const SquareButton = ({ children, ...props }) => {
       ref={ref}
       {...props}
       style={{
+        ...props.style,
         width: `${width}px`,
       }}
     >

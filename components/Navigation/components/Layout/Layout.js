@@ -8,10 +8,14 @@ const BG = styled.div`
   background-color: ${colors("gray.2")};
 `;
 
+const Border = styled.div`
+  border-bottom: 2px solid black;
+`;
+
 const Layout = ({ logo, icons, main }) => {
   return (
     <div>
-      <Shadow>
+      <Border>
         <BG>
           <Padding padding={"2em 0"}>
             <div
@@ -50,7 +54,7 @@ const Layout = ({ logo, icons, main }) => {
             </div>
           </Padding>
         </BG>
-      </Shadow>
+      </Border>
     </div>
   );
 };

@@ -20,6 +20,7 @@ import Link from "next/link";
 import { useCart } from "../../Providers/CartProvider/CartProvider";
 import { useProducts } from "../../Providers/ProductsProvider";
 import { Badge } from "../../ui/Badge";
+import { useRouter } from "next/router";
 
 const CartMenu = () => {
   const [products] = useProducts();
@@ -40,7 +41,8 @@ const CartIcon = () => {
     setMenuState("open");
   };
 
-  const [cart, { addProduct, removeProduct }] = useCart();
+  const [cart] = useCart();
+  const router = useRouter();
 
   const productCount = useMemo(() => {
     return Object.values(cart).reduce((sum, { count }) => {
@@ -69,16 +71,13 @@ const CartIcon = () => {
         </div>
       )}
 
-      <BagOutlined width={"1.2em"} height={"1.2em"} />
-      {menuState === "open" && (
-        <div
-          style={{
-            position: "absolute",
-            top: 0,
-            left: 0,
-          }}
-        ></div>
-      )}
+      <BagOutlined
+        width={"1.2em"}
+        height={"1.2em"}
+        onClick={() => {
+          router.push("/checkout");
+        }}
+      />
     </div>
   );
 };

@@ -1,14 +1,16 @@
-import React from "react";
+import React, { useEffect } from "react";
 import ProductPage from "../../_pages/Product/Product.page";
 import { getProductById } from "../../products";
-import { ProductProvider } from "../../Providers/ProductsProvider";
+import { useProducts } from "../../Providers/ProductsProvider";
 
 const Product = ({ id, products }) => {
-  return (
-    <ProductProvider value={[products, () => {}]}>
-      <ProductPage id={id} />
-    </ProductProvider>
-  );
+  const [, setProducts] = useProducts();
+
+  useEffect(() => {
+    setProducts(products);
+  }, [products]);
+
+  return <ProductPage id={id} />;
 };
 
 export async function getServerSideProps(context) {

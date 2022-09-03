@@ -6,9 +6,11 @@ const BagOutlined = ({
   strokeWidth = "0",
   height = "1em",
   width = "1em",
+  ...props
 }) => {
   return (
     <svg
+      {...props}
       stroke={stroke}
       fill={fill}
       strokeWidth={strokeWidth}

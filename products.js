@@ -1,15 +1,18 @@
 const reviews = {
   1: {
+    id: "1",
     user: "Stan",
     rating: "4",
     text: "Corporis culpa ducimus ipsum non quod sequi voluptates. Assumenda cupiditate eum facere facilis fuga harum, non odit porro provident tenetur totam ullam!",
   },
   2: {
+    id: "2",
     user: "Peter",
     rating: "5",
     text: "Inventore repudiandae, vero. Dolores doloribus dolorum fuga id itaque minus nisi, numquam officia quos sunt. Facere in maiores modi pariatur possimus unde.",
   },
   3: {
+    id: "3",
     user: "Frank",
     rating: 4,
     text: "Delectus deserunt iusto quae vitae. Aliquid consequatur debitis dolor dolore eius facilis maiores minus natus possimus quas, quibusdam reiciendis repellendus vitae voluptates.",

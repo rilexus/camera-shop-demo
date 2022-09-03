@@ -1,15 +1,22 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { EShopPage } from "../_pages";
-import { ProductProvider } from "../Providers/ProductsProvider";
+import { ProductProvider, useProducts } from "../Providers/ProductsProvider";
 import { filter } from "../products";
 import products from "../products";
 
 const Shop = ({ products, intro }) => {
-  return (
-    <ProductProvider value={[products, () => {}]}>
-      <EShopPage intro={intro} />
-    </ProductProvider>
-  );
+  const [, setProducts] = useProducts();
+
+  useEffect(() => {
+    setProducts(products);
+  }, [products]);
+
+  // return (
+  //   <ProductProvider value={[products, () => {}]}>
+  //     <EShopPage intro={intro} />
+  //   </ProductProvider>
+  // );
+  return <EShopPage intro={intro} />;
 };
 
 const parseQuery = (query) => {

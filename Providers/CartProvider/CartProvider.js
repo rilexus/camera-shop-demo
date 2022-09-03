@@ -32,7 +32,10 @@ const useCart = () => {
     });
   };
 
-  const removeProduct = (id) => {};
+  const removeProduct = (id, count) => {
+    // TODO: implement
+    console.warn("[useCart]: removeProduct is not implemented!");
+  };
 
   return [cart, { addProduct, removeProduct }];
 };

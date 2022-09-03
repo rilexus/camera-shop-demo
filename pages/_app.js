@@ -27,16 +27,17 @@ const t = {
 function MyApp({ Component, pageProps }) {
   const favouredProducts = useState([]);
   const cartState = useState({});
-
+  const productsState = useState({});
   return (
     <ThemeProvider theme={t}>
       <GlobalCSS />
-
-      <CartProvider value={cartState}>
-        <FavouredProductsProvider value={favouredProducts}>
-          <Component {...pageProps} />
-        </FavouredProductsProvider>
-      </CartProvider>
+      <ProductProvider value={productsState}>
+        <CartProvider value={cartState}>
+          <FavouredProductsProvider value={favouredProducts}>
+            <Component {...pageProps} />
+          </FavouredProductsProvider>
+        </CartProvider>
+      </ProductProvider>
     </ThemeProvider>
   );
 }

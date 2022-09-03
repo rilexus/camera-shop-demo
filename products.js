@@ -78,6 +78,45 @@ const products = {
     description:
       "Accusamus aperiam atque aut beatae culpa dolores, enim exercitationem nemo nesciunt nihil nostrum odio possimus quo ratione rem sed velit veniam voluptatum!",
   },
+  7: {
+    id: 7,
+    category: "merge",
+    condition: "new",
+    rating: 4,
+    src: "/shirt_transparent_400x400.png",
+    price: "15$",
+    name: "T-Shirt Conceptional",
+    color: "green",
+    brand: "analog",
+    description:
+      "Accusamus aperiam atque aut beatae culpa dolores, enim exercitationem nemo nesciunt nihil nostrum odio possimus quo ratione rem sed velit veniam voluptatum!",
+  },
+  8: {
+    id: 8,
+    category: "merge",
+    condition: "new",
+    rating: 4,
+    src: "/bag_400x400.png",
+    price: "25$",
+    name: "Shopping Bag",
+    color: "yellow",
+    brand: "analog",
+    description:
+      "Accusamus aperiam atque aut beatae culpa dolores, enim exercitationem nemo nesciunt nihil nostrum odio possimus quo ratione rem sed velit veniam voluptatum!",
+  },
+  9: {
+    id: 9,
+    category: "merge",
+    condition: "new",
+    rating: 4,
+    src: "/phone_400x400.png",
+    price: "10$",
+    name: "iPhone 12 Case",
+    color: "blue",
+    brand: "analog",
+    description:
+      "Accusamus aperiam atque aut beatae culpa dolores, enim exercitationem nemo nesciunt nihil nostrum odio possimus quo ratione rem sed velit veniam voluptatum!",
+  },
 };
 
 const filter = (products, filterObject) => {

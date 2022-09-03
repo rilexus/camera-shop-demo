@@ -77,17 +77,18 @@ const MergeList = ({ products }) => {
     >
       <ScrollableList>
         <XStack>
-          {products.map(({ title, price, description, src, id, rating }) => {
+          {products.map(({ name, price, description, src, id, rating }) => {
             return (
-              <MergeTile
-                key={id}
-                id={id}
-                rating={rating}
-                title={title}
-                price={price}
-                description={description}
-                src={src}
-              />
+              <a href={`/product/${id}`} key={id}>
+                <MergeTile
+                  id={id}
+                  rating={rating}
+                  title={name}
+                  price={price}
+                  description={description}
+                  src={src}
+                />
+              </a>
             );
           })}
         </XStack>

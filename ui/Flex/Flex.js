@@ -22,6 +22,7 @@ const Flex = forwardRef(function Flex(
   {
     children,
     style,
+    direction = "row",
     justify = "normal",
     align = ALIGN.start,
     wrap = "inherit",
@@ -37,8 +38,9 @@ const Flex = forwardRef(function Flex(
       justifyContent: justify,
       alignItems: align,
       flexWrap: wrap,
+      flexDirection: direction,
     },
-    [style, justify, align, wrap]
+    [style, justify, align, wrap, direction]
   );
   return createElement(
     as,

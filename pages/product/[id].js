@@ -1,13 +1,11 @@
-import React, { useState } from "react";
-import ProductPage from "../../_pages/ProductPage/Product.page";
+import React from "react";
+import ProductPage from "../../_pages/Product/Product.page";
 import { getProductById } from "../../products";
 import { ProductProvider } from "../../Providers/ProductsProvider";
 
-const Product = ({ id, ...props }) => {
-  const products = useState(props.products);
-
+const Product = ({ id, products }) => {
   return (
-    <ProductProvider value={products}>
+    <ProductProvider value={[products, () => {}]}>
       <ProductPage id={id} />
     </ProductProvider>
   );

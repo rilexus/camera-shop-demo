@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useMemo } from "react";
 import { Padding, Text } from "../../../../ui";
 import { MergeList } from "./components";
 
@@ -32,7 +32,8 @@ const merges = [
   },
 ];
 
-const MerchSection = () => {
+const MerchSection = ({ mergeProducts }) => {
+  const prods = useMemo(() => Object.values(mergeProducts), [mergeProducts]);
   return (
     <section>
       <Padding padding={"10vh"}>
@@ -40,7 +41,7 @@ const MerchSection = () => {
           You can buy our merch
         </Text>
         <div>
-          <MergeList products={merges} />
+          <MergeList products={prods} />
         </div>
       </Padding>
     </section>

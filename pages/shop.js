@@ -1,18 +1,12 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { EShopPage } from "../_pages";
 import { ProductProvider } from "../Providers/ProductsProvider";
-import { filter, getByColors, getProductsByCategory } from "../products";
+import { filter } from "../products";
 import products from "../products";
 
 const Shop = ({ products, intro }) => {
-  const [prod, set] = useState(products);
-
-  useEffect(() => {
-    set(products);
-  }, [products]);
-
   return (
-    <ProductProvider value={[prod, set]}>
+    <ProductProvider value={[products, () => {}]}>
       <EShopPage intro={intro} />
     </ProductProvider>
   );

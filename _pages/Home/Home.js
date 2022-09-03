@@ -9,7 +9,7 @@ import CaruselSection from "./components/CaruselSection/CaruselSection";
 import NewsLatter from "./components/NewsLatter/NewsLatter";
 import Layout from "../../components/Layout/Layout";
 
-const Home = () => {
+const Home = ({ mergeProducts }) => {
   return (
     <Layout
       navigation={<Navigation />}
@@ -23,7 +23,7 @@ const Home = () => {
           <main>
             <CaruselSection />
 
-            <MerchSection />
+            <MerchSection mergeProducts={mergeProducts} />
             <WhoWeAreSection />
             <GallerySection />
             <NewsLatter />

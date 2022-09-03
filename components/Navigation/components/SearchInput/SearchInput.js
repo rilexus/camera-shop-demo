@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { useToggle } from "../../../../hooks";
+import { useInput, useToggle } from "../../../../hooks";
 import React, { useEffect, useRef } from "react";
 import useClickOutside from "../../../../hooks/useClickOutside/useClickOutside";
 import { ButtonStyleless, Flex } from "../../../../ui";
@@ -13,7 +13,7 @@ const Input = styled.input`
   box-sizing: border-box;
 `;
 
-const SearchInput = ({ value, onChange }) => {
+const SearchInput = ({ value, onChange, ...props }) => {
   const [isOpen, toggle] = useToggle(false);
   const inputRef = useRef(null);
 
@@ -41,6 +41,7 @@ const SearchInput = ({ value, onChange }) => {
         <Input
           ref={inputRef}
           placeholder={"Search"}
+          {...props}
           type="text"
           value={value}
           onChange={onChange}

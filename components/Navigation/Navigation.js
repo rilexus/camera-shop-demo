@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useRef } from "react";
+import React, { useEffect, useMemo, useRef, useState } from "react";
 import { ButtonStyleless, Flex, Padding, Shadow, XStack } from "../../ui";
 import { ALIGN, JUSTIFY } from "../../ui/Flex";
 import {
@@ -19,27 +19,7 @@ import SearchInput from "./components/SearchInput/SearchInput";
 import Link from "next/link";
 import { useCart } from "../../Providers/CartProvider/CartProvider";
 import { useProducts } from "../../Providers/ProductsProvider";
-
-const StyledBadge = styled(Flex)`
-  background-color: red;
-  font-size: 0.6rem;
-  border-radius: 1rem;
-  color: white;
-  border: 1px solid white;
-  height: 17px;
-  width: 17px;
-  justify-items: center;
-  box-shadow: 0px 2px 3px 0px #5e5e5e;
-  pointer-events: none;
-`;
-
-const Badge = ({ children }) => {
-  return (
-    <StyledBadge justify={"center"} align={"center"}>
-      {children}
-    </StyledBadge>
-  );
-};
+import { Badge } from "../../ui/Badge";
 
 const CartMenu = () => {
   const [products] = useProducts();
@@ -51,17 +31,30 @@ const CartMenu = () => {
 };
 
 const CartIcon = () => {
+  const [menuState, setMenuState] = useState("closed");
+
+  const close = () => {
+    setMenuState("closed");
+  };
+  const open = () => {
+    setMenuState("open");
+  };
+
   const [cart, { addProduct, removeProduct }] = useCart();
+
   const productCount = useMemo(() => {
-    return Object.entries(cart).reduce((sum, [id, count]) => {
+    return Object.values(cart).reduce((sum, { count }) => {
       return sum + count;
     }, 0);
   }, [cart]);
+
   const hasProducts = Object.keys(cart).length > 0;
+
   return (
     <div
       style={{
         cursor: "pointer",
+        position: "relative",
       }}
     >
       {hasProducts && (
@@ -77,36 +70,64 @@ const CartIcon = () => {
       )}
 
       <BagOutlined width={"1.2em"} height={"1.2em"} />
+      {menuState === "open" && (
+        <div
+          style={{
+            position: "absolute",
+            top: 0,
+            left: 0,
+          }}
+        ></div>
+      )}
+    </div>
+  );
+};
+
+const FavoredIcon = () => {
+  const [favouredProducts] = useFavouredProducts();
+  const hasProducts = favouredProducts.length > 0;
+  return (
+    <div
+      style={{
+        position: "relative",
+      }}
+    >
+      {hasProducts ? (
+        <HeartFilled width={"1.2em"} height={"1.2em"} fill={"red"} />
+      ) : (
+        <HeartOutlined width={"1.2em"} height={"1.2em"} />
+      )}
+      {hasProducts && (
+        <div
+          style={{
+            position: "absolute",
+            right: "-.7rem",
+            top: "-.7rem",
+          }}
+        >
+          <Badge>{favouredProducts.length}</Badge>
+        </div>
+      )}
     </div>
   );
 };
 
 const Icons = () => {
-  const [favouredProducts] = useFavouredProducts();
-
-  const hasProducts = favouredProducts.length > 0;
+  const searchInput = useInput({ initialValue: "", name: "search" });
   return (
-    <Flex
-      align={ALIGN.center}
-      justify={JUSTIFY.between}
-      style={{
-        width: "200px",
-      }}
-    >
-      <SearchInput />
-      <div>
-        <PersonOutlined width={"1.2em"} height={"1.2em"} strokeWidth={"40"} />
-      </div>
-      <div>
-        {hasProducts ? (
-          <HeartFilled width={"1.2em"} height={"1.2em"} fill={"red"} />
-        ) : (
-          <HeartOutlined width={"1.2em"} height={"1.2em"} />
-        )}
-      </div>
-      <div>
-        <CartIcon />
-      </div>
+    <Flex align={ALIGN.center} justify={JUSTIFY.between}>
+      <XStack value={"1em"}>
+        <SearchInput {...searchInput} />
+        <div>
+          <PersonOutlined width={"1.2em"} height={"1.2em"} strokeWidth={"40"} />
+        </div>
+        <div>
+          <FavoredIcon />
+        </div>
+        <div>
+          <CartIcon />
+        </div>
+      </XStack>
     </Flex>
   );
 };
@@ -119,8 +140,6 @@ const MediaHide = styled.div`
 `;
 
 const Navigation = () => {
-  const searchInput = useInput({ initialValue: "", name: "search" });
-
   return (
     <Layout
       logo={
@@ -132,13 +151,13 @@ const Navigation = () => {
       main={
         <XStack>
           <span>
-            <a href={"/shop?category=instant-camera"}>Shop</a>
+            <Link href={"/shop?category=instant-camera"}>Shop</Link>
           </span>
           <span>Services</span>
           <span>Custom</span>
         </XStack>
       }
-      icons={<Icons {...searchInput} />}
+      icons={<Icons />}
     />
   );
 };

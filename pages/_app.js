@@ -26,19 +26,17 @@ const t = {
 
 function MyApp({ Component, pageProps }) {
   const favouredProducts = useState([]);
-  const prod = useState(products);
   const cartState = useState({});
 
   return (
     <ThemeProvider theme={t}>
       <GlobalCSS />
-      <ProductProvider value={prod}>
-        <CartProvider value={cartState}>
-          <FavouredProductsProvider value={favouredProducts}>
-            <Component {...pageProps} />
-          </FavouredProductsProvider>
-        </CartProvider>
-      </ProductProvider>
+
+      <CartProvider value={cartState}>
+        <FavouredProductsProvider value={favouredProducts}>
+          <Component {...pageProps} />
+        </FavouredProductsProvider>
+      </CartProvider>
     </ThemeProvider>
   );
 }

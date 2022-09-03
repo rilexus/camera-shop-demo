@@ -38,9 +38,12 @@ const Detail = ({ summary, children }) => {
   );
 };
 
-const Info = ({ name, id, price, description }) => {
+const Info = ({ id }) => {
   const [counter, setCounter] = useState(1);
   const [, { addProduct }] = useCart();
+  const [product] = useProduct(id);
+  const { name, price, description } = product;
+
   return (
     <Flex
       direction={"column"}
@@ -78,7 +81,7 @@ const Info = ({ name, id, price, description }) => {
         />
         <LargeButton
           onClick={() => {
-            addProduct({ id, count: counter });
+            addProduct(product, counter);
             setCounter(1);
           }}
           style={{
@@ -120,12 +123,7 @@ const ProductPage = ({ id }) => {
                       height: "100%",
                     }}
                   >
-                    <Info
-                      id={id}
-                      price={price}
-                      description={description}
-                      name={name}
-                    />
+                    <Info id={id} />
                   </div>
                 </Grid.Item>
 

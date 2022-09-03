@@ -4,8 +4,9 @@ export default function productHandler(req, res) {
   const { query } = req;
   const { id } = query;
   if (!(id in products)) {
-    res.status(404).json({ message: `User with id: ${id} not found.` });
-    return null;
+    return res
+      .status(404)
+      .json({ message: `Product with id: ${id} not found.` });
   }
 
   const product = products[id];

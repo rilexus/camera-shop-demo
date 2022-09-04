@@ -33,8 +33,18 @@ const useCart = () => {
   };
 
   const removeProduct = (id, count) => {
-    // TODO: implement
-    console.warn("[useCart]: removeProduct is not implemented!");
+    if (!(id in cart)) {
+      return;
+    }
+    const product = cart[id];
+    const newCount = product.count - count;
+    if (newCount <= 0) {
+      // remove product from cart
+      const { [id]: p, ...rest } = cart;
+      setCart(rest);
+    } else {
+      setCart({ ...cart, [id]: { ...cart[id], count: newCount } });
+    }
   };
 
   return [cart, { addProduct, removeProduct }];

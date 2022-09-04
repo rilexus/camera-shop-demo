@@ -1,5 +1,5 @@
+export { default as Radio } from "./Radio/Radio";
 export { default as Checkbox } from "./Checkbox/Checkbox";
-
 export { default as YStack } from "./YStack/YStack";
 export { default as ThemeProvider } from "./theme/ThemeProvider";
 export { default as Dialog } from "./Dialog/Dialog";

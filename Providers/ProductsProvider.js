@@ -5,8 +5,9 @@ const ProductProvider = context.Provider;
 const useProducts = context.useContext;
 
 const useProduct = (id) => {
-  const [prod] = useProducts();
-  return [prod[id]];
+  const [products] = useProducts();
+  const product = id in products ? products[id] : {};
+  return [product];
 };
 
 export { useProducts, ProductProvider, useProduct };

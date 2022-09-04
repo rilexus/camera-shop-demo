@@ -3,10 +3,35 @@ import { useCart } from "../Providers/CartProvider/CartProvider";
 import Layout from "../components/Layout/Layout";
 import { Navigation } from "../components";
 import Footer from "../components/Footer/Footer";
-import { Container, Flex, Grid, Padding } from "../ui";
+import {
+  ButtonStyleless,
+  Container,
+  Flex,
+  Grid,
+  LargeButton,
+  Padding,
+  Radio,
+} from "../ui";
 import styled from "styled-components";
+import { CloseIcon } from "../ui/icons";
+import { colors } from "../ui/theme/theme";
 
-const Counter = ({ value, onChange, onDecrement, onIncrement }) => {
+const Th = styled.th`
+  text-align: left;
+  padding: 1em 0;
+`;
+
+const Td = styled.td`
+  padding: 1em 0;
+`;
+
+const Tr = styled.tr``;
+
+const Table = styled.table`
+  border-collapse: collapse;
+`;
+
+const Counter = ({ value, onChange, onDecrement, onIncrement, min }) => {
   return (
     <div>
       <button
@@ -14,6 +39,7 @@ const Counter = ({ value, onChange, onDecrement, onIncrement }) => {
           onDecrement?.();
           onChange?.({ target: { value: value - 1 } });
         }}
+        disabled={value <= min}
       >
         -
       </button>
@@ -45,41 +71,95 @@ const ProductListElement = ({ id }) => {
   const { src, name, price, count } = product;
 
   return (
-    <tr
-      style={{
-        padding: "2em 0",
-      }}
-    >
-      <td>
+    <Tr style={{}}>
+      <Td>
         <Flex align={"center"}>
           <img src={src} width={"100px"} height={"auto"} alt="" />
           <div>{name}</div>
         </Flex>
-      </td>
+      </Td>
 
-      <td>{price}</td>
-      <td>
+      <Td>{price}</Td>
+      <Td>
         <Counter
+          min={1}
           value={count}
           onIncrement={() => {
             addProduct(product, 1);
           }}
           onDecrement={() => {
-            removeProduct(id, 1);
+            if (count > 1) {
+              removeProduct(id, 1);
+            }
           }}
         />
-      </td>
-      <td>300$</td>
-      <td>
-        <button>remove</button>
-      </td>
-    </tr>
+      </Td>
+      <Td>300$</Td>
+      <Td>
+        <ButtonStyleless
+          onClick={() => {
+            removeProduct(id, count);
+          }}
+        >
+          <CloseIcon />
+        </ButtonStyleless>
+      </Td>
+    </Tr>
   );
 };
-
-const Th = styled.th`
-  text-align: left;
+const BG = styled.div`
+  background-color: ${colors("gray.2")};
 `;
+
+const Info = () => {
+  return (
+    <BG
+      style={{
+        padding: "2em 2em ",
+      }}
+    >
+      <div
+        style={{
+          marginBottom: "1em",
+          fontWeight: 600,
+          fontSize: "1.3rem",
+        }}
+      >
+        Cart Total
+      </div>
+      <div
+        style={{
+          marginBottom: "2em",
+        }}
+      >
+        <div
+          style={{
+            marginBottom: "1em",
+          }}
+        >
+          Delivery Method:
+        </div>
+        <div>
+          <Radio label={"Pick up at the store."} />
+          <Radio label={"Delivery by postal service."} />
+          <Radio label={"DHL Courier"} />
+        </div>
+      </div>
+      <div
+        style={{
+          marginBottom: ".5em",
+          fontWeight: 600,
+          fontSize: "1.2rem",
+        }}
+      >
+        Total 300$
+      </div>
+      <div>
+        <LargeButton>Checkout</LargeButton>
+      </div>
+    </BG>
+  );
+};
 
 const Checkout = () => {
   const [cart] = useCart();
@@ -91,24 +171,31 @@ const Checkout = () => {
       navigation={<Navigation />}
       main={
         <Container>
-          <Padding padding={"6rem 0 0 0"}>
-            <Grid gutter={"1rem"}>
-              <Grid.Item sm={70}>
-                <table>
+          <Padding
+            padding={"6rem 0 0 0"}
+            style={{
+              minHeight: "100vh",
+            }}
+          >
+            <Grid gutter={"3em"}>
+              <Grid.Item sm={60}>
+                <Table
+                  style={{
+                    width: "100%",
+                  }}
+                >
                   <thead>
-                    <tr>
-                      <th
-                        style={{
-                          textAlign: "left",
-                        }}
-                      >
-                        Product
-                      </th>
-                      <th>Price</th>
-                      <th>Quantity</th>
-                      <th>Total</th>
-                      <th> </th>
-                    </tr>
+                    <Tr
+                      style={{
+                        borderBottom: "1px solid black",
+                      }}
+                    >
+                      <Th>Product</Th>
+                      <Th>Price</Th>
+                      <Th>Quantity</Th>
+                      <Th>Total</Th>
+                      <Th> </Th>
+                    </Tr>
                   </thead>
                   <tbody>
                     {products.map((product) => {
@@ -117,9 +204,11 @@ const Checkout = () => {
                       );
                     })}
                   </tbody>
-                </table>
+                </Table>
               </Grid.Item>
-              <Grid.Item sm={30}>info</Grid.Item>
+              <Grid.Item sm={40}>
+                <Info />
+              </Grid.Item>
             </Grid>
           </Padding>
         </Container>

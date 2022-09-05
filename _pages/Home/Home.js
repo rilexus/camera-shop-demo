@@ -22,7 +22,6 @@ const Home = ({ mergeProducts }) => {
           </Head>
           <main>
             <CaruselSection />
-
             <MerchSection mergeProducts={mergeProducts} />
             <WhoWeAreSection />
             <GallerySection />

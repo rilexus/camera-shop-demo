@@ -272,7 +272,15 @@ const getProductsByIds = async (ids) => {
     }
     return {
       ...acc,
-      [id]: products[id],
+      [id]: {
+        ...products[id],
+        reviews: products[id].reviews.reduce((acc, reviewId) => {
+          return {
+            ...acc,
+            [reviewId]: reviews[reviewId],
+          };
+        }, {}),
+      },
     };
   }, {});
 };

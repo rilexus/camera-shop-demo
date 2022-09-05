@@ -1,13 +1,9 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 import { md, sm, xxl } from "../css/medias";
-import { Flex, XStack } from "../index";
+import { Flex } from "../index";
 import { ALIGN } from "../Flex";
 
-const MediaWidth = styled.div`
-  width: 450px;
-  height: 50em;
-  overflow-x: scroll;
-
+const scrollbarCss = css`
   ::-webkit-scrollbar {
     width: 4px;
     height: 4px;
@@ -22,6 +18,14 @@ const MediaWidth = styled.div`
     /* Background */
     background: rgba(250, 250, 250, 0);
   }
+`;
+
+const MediaWidth = styled.div`
+  width: 450px;
+  height: 50em;
+  overflow-x: scroll;
+
+  ${scrollbarCss};
 
   ${sm`
     width: 450px;

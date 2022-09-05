@@ -1,7 +1,7 @@
 import React from "react";
 import styled, { useTheme } from "styled-components";
 import { colors } from "../../ui/theme/theme";
-import { Flex, Padding, XStack } from "../../ui";
+import { Flex, Padding } from "../../ui";
 import { JUSTIFY, WRAP } from "../../ui/Flex";
 import FacebookFilled from "../../ui/icons/FacebookFilled/FacebookFilled";
 import InstagramFilled from "../../ui/icons/InstagramFilled/InstagramFilled";
@@ -90,23 +90,21 @@ const Footer = () => {
         </Flex>
         <Padding padding={"2em"}>
           <Flex justify={"center"}>
-            <XStack>
-              <FacebookFilled
-                height={"1.4em"}
-                width={"1.4em"}
-                fill={colors("gray.3")({ theme })}
-              />
-              <InstagramFilled
-                height={"1.4em"}
-                width={"1.4em"}
-                fill={colors("gray.3")({ theme })}
-              />
-              <TwitterFilled
-                height={"1.4em"}
-                width={"1.4em"}
-                fill={colors("gray.3")({ theme })}
-              />
-            </XStack>
+            <FacebookFilled
+              height={"1.4em"}
+              width={"1.4em"}
+              fill={colors("gray.3")({ theme })}
+            />
+            <InstagramFilled
+              height={"1.4em"}
+              width={"1.4em"}
+              fill={colors("gray.3")({ theme })}
+            />
+            <TwitterFilled
+              height={"1.4em"}
+              width={"1.4em"}
+              fill={colors("gray.3")({ theme })}
+            />
           </Flex>
         </Padding>
       </Padding>

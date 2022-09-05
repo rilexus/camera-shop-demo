@@ -12,6 +12,7 @@ import { colors } from "../../ui/theme/theme";
 import { JUSTIFY } from "../../ui/Flex";
 import { useCart } from "../../Providers/CartProvider/CartProvider";
 import { Counter } from "../../ui/Counter";
+import { Reviews } from "./components";
 
 const Details = styled.details`
   margin-bottom: 2em;
@@ -135,10 +136,7 @@ const ProductPage = ({ id }) => {
                     iusto magni modi nihil officiis qui similique tempore.
                   </Detail>
                   <Detail summary={"Reviews"}>
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                    Dignissimos excepturi modi officiis omnis perferendis
-                    reiciendis soluta totam unde. Accusamus doloribus eaque et
-                    iusto magni modi nihil officiis qui similique tempore.
+                    <Reviews id={id} />
                   </Detail>
                   <Detail summary={"Delivery & Payment"}>
                     Lorem ipsum dolor sit amet, consectetur adipisicing elit.

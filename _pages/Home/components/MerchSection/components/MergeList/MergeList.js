@@ -1,14 +1,13 @@
-import React, { useMemo } from "react";
-import { HeartFilled, StarFilled } from "../../../../../../ui/icons";
-import { useMouseOver, useToggle } from "../../../../../../hooks";
+import React from "react";
+import { useMouseOver } from "../../../../../../hooks";
 import {
   Display,
   Flex,
   Grid,
   LargeButton,
+  Margin,
   Padding,
   Text,
-  XStack,
 } from "../../../../../../ui";
 import { JUSTIFY } from "../../../../../../ui/Flex";
 import ScrollableList from "../../../../../../ui/ScrollableList/ScrollableList";
@@ -76,10 +75,10 @@ const MergeList = ({ products }) => {
       }}
     >
       <ScrollableList>
-        <XStack>
-          {products.map(({ name, price, description, src, id, rating }) => {
-            return (
-              <a href={`/product/${id}`} key={id}>
+        {products.map(({ name, price, description, src, id, rating }) => {
+          return (
+            <Margin value={"0 1em 0 0"} key={id}>
+              <a href={`/product/${id}`}>
                 <MergeTile
                   id={id}
                   rating={rating}
@@ -89,9 +88,9 @@ const MergeList = ({ products }) => {
                   src={src}
                 />
               </a>
-            );
-          })}
-        </XStack>
+            </Margin>
+          );
+        })}
       </ScrollableList>
     </Grid>
   );

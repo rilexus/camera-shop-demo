@@ -1,7 +1,7 @@
 import React, { useMemo } from "react";
 import { StarFilled, StarOutlined } from "../../ui/icons";
 
-const StarRating = ({ rating }) => {
+const StarRating = ({ rating, size = "normal" }) => {
   const filled = useMemo(
     () => Array.from({ length: rating }).fill(StarFilled),
     [rating]
@@ -12,17 +12,16 @@ const StarRating = ({ rating }) => {
     [rating]
   );
 
+  const height = size === "normal" ? "1.5em" : "1.2em";
+  const width = size === "normal" ? "1.5em" : "1.2em";
+
   return (
     <div>
       {filled.map((C, idx) => {
-        return (
-          <C key={idx} height={"1.5em"} width={"1.5em"} fill={"#ecc40f"} />
-        );
+        return <C key={idx} height={height} width={width} fill={"#ecc40f"} />;
       })}
       {outlined.map((C, idx) => {
-        return (
-          <C key={idx} height={"1.5em"} width={"1.5em"} fill={"#ded1b3"} />
-        );
+        return <C key={idx} height={height} width={width} fill={"#ded1b3"} />;
       })}
     </div>
   );

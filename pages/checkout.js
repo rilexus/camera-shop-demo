@@ -15,6 +15,7 @@ import {
 import styled from "styled-components";
 import { CloseIcon } from "../ui/icons";
 import { colors } from "../ui/theme/theme";
+import { Counter } from "../ui/Counter";
 
 const Th = styled.th`
   text-align: left;
@@ -31,44 +32,10 @@ const Table = styled.table`
   border-collapse: collapse;
 `;
 
-const Counter = ({ value, onChange, onDecrement, onIncrement, min }) => {
-  return (
-    <div>
-      <button
-        onClick={() => {
-          onDecrement?.();
-          onChange?.({ target: { value: value - 1 } });
-        }}
-        disabled={value <= min}
-      >
-        -
-      </button>
-      <input
-        type="number"
-        value={value}
-        min={1}
-        step={1}
-        onChange={onChange}
-        style={{
-          width: "3rem",
-        }}
-      />
-      <button
-        onClick={() => {
-          onIncrement?.();
-          onChange?.({ target: { value: value + 1 } });
-        }}
-      >
-        +
-      </button>
-    </div>
-  );
-};
-
 const ProductListElement = ({ id }) => {
   const [cart, { removeProduct, addProduct }] = useCart();
   const product = cart[id];
-  const { src, name, price, count } = product;
+  const { src, name, price = {}, count } = product;
 
   return (
     <Tr style={{}}>
@@ -79,12 +46,14 @@ const ProductListElement = ({ id }) => {
         </Flex>
       </Td>
 
-      <Td>{price}</Td>
+      <Td>{`${price.value}$`}</Td>
       <Td>
         <Counter
+          size={"small"}
           min={1}
           value={count}
           onIncrement={() => {
+            console.log("in");
             addProduct(product, 1);
           }}
           onDecrement={() => {

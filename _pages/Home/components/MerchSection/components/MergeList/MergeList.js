@@ -36,7 +36,6 @@ const MergeTile = ({ id, src, title, price, description, rating }) => {
       </Flex>
       <img src={src} alt="" width={"auto"} height={"100%"} />
       <Text align={"center"}>
-        <div>{price}</div>
         <div
           style={{
             fontSize: "1.3rem",
@@ -44,6 +43,7 @@ const MergeTile = ({ id, src, title, price, description, rating }) => {
         >
           <Padding padding={".7em"}>{title}</Padding>
         </div>
+        <div>{price}</div>
       </Text>
       <Display on={isOver}>
         <Padding padding={"1em"}>
@@ -84,7 +84,7 @@ const MergeList = ({ products }) => {
                   id={id}
                   rating={rating}
                   title={name}
-                  price={price}
+                  price={`${price.value}$`}
                   description={description}
                   src={src}
                 />

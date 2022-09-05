@@ -61,7 +61,7 @@ const ProductTile = ({ id, src, name, price, rating, Link }) => {
                   {name}
                 </div>
               </Padding>
-              <div>{price}</div>
+              <div>{`${price?.value}$`}</div>
             </Text>
           </Padding>
         </Link>

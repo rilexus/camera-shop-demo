@@ -1,13 +1,15 @@
 import React, { useLayoutEffect, useRef, useState } from "react";
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 import { colors } from "../../theme/theme";
+import { useStyle } from "../../../hooks";
 
-const StyledButton = styled.button`
+const buttonCss = css`
   cursor: pointer;
-  font-size: 1rem;
-  padding: 1.05em 1.3em;
   border: 2px solid black;
   background: transparent;
+
+  font-size: 1rem;
+
   &:hover {
     background: ${colors("gray.1")};
   }
@@ -16,7 +18,17 @@ const StyledButton = styled.button`
     color: blue;
   }
 `;
-const SquareButton = ({ children, ...props }) => {
+const SmallButton = styled.button`
+  ${buttonCss};
+  padding: 0.4em;
+`;
+
+const BigButton = styled.button`
+  ${buttonCss};
+  padding: 1.05em 1.3em;
+`;
+
+const SquareButton = ({ children, size = "big", ...props }) => {
   const ref = useRef(null);
   const [width, setWidth] = useState(0);
 
@@ -28,15 +40,18 @@ const SquareButton = ({ children, ...props }) => {
     }
   }, []);
 
-  return (
-    <StyledButton
-      ref={ref}
-      {...props}
-      style={{
-        ...props.style,
-        width: `${width}px`,
-      }}
-    >
+  const propsStyle = props.style;
+
+  const style = useStyle(
+    {
+      ...propsStyle,
+      width: `${width}px`,
+    },
+    [width, propsStyle]
+  );
+
+  return size === "big" ? (
+    <BigButton ref={ref} {...props} style={style}>
       <span
         style={{
           pointerEvents: "none",
@@ -44,7 +59,17 @@ const SquareButton = ({ children, ...props }) => {
       >
         {children}
       </span>
-    </StyledButton>
+    </BigButton>
+  ) : (
+    <SmallButton ref={ref} {...props} style={style}>
+      <span
+        style={{
+          pointerEvents: "none",
+        }}
+      >
+        {children}
+      </span>
+    </SmallButton>
   );
 };
 

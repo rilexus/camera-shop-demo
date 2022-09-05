@@ -1,4 +1,4 @@
-import React, { useLayoutEffect, useRef, useState } from "react";
+import React, { useState } from "react";
 import { useProduct } from "../../Providers/ProductsProvider";
 import { Container, Flex, Grid, LargeButton, Padding } from "../../ui";
 import Layout from "../../components/Layout/Layout";
@@ -8,10 +8,10 @@ import StarRating from "../../components/StarRating/StarRating";
 import FavourButton from "../../components/FavourButton/FavourButton";
 import styled from "styled-components";
 import { colors } from "../../ui/theme/theme";
-import { Counter } from "./components/Counter";
+
 import { JUSTIFY } from "../../ui/Flex";
 import { useCart } from "../../Providers/CartProvider/CartProvider";
-import { useFavouredProducts } from "../../Providers/FavorProvider";
+import { Counter } from "../../ui/Counter";
 
 const Details = styled.details`
   margin-bottom: 2em;
@@ -43,7 +43,7 @@ const Info = ({ id }) => {
   const [counter, setCounter] = useState(1);
   const [, { addProduct }] = useCart();
   const [product] = useProduct(id);
-  const { name, price, description } = product;
+  const { name, price = {}, description } = product;
 
   return (
     <Flex
@@ -66,7 +66,7 @@ const Info = ({ id }) => {
         </div>
         <p>
           <span>Price: </span>
-          <span>{price}</span>
+          <span>{`${price.value}$`}</span>
         </p>
         <p>
           <span>{description}</span>

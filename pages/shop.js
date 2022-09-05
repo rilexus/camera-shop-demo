@@ -11,11 +11,6 @@ const Shop = ({ products, intro }) => {
     setProducts(products);
   }, [products]);
 
-  // return (
-  //   <ProductProvider value={[products, () => {}]}>
-  //     <EShopPage intro={intro} />
-  //   </ProductProvider>
-  // );
   return <EShopPage intro={intro} />;
 };
 

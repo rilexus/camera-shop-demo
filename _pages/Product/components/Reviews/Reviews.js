@@ -4,6 +4,7 @@ import { colors } from "../../../../ui/theme/theme";
 import StarRating from "../../../../components/StarRating/StarRating";
 import { Flex, Margin, Padding } from "../../../../ui";
 import scrollbarCss from "../../../../ui/css/scrollbar.css";
+import { DownvoteOutlined, UpvoteOutlined } from "../../../../ui/icons";
 
 const BG = styled.div`
   background-color: ${colors("gray.2")};
@@ -18,32 +19,54 @@ const ReviewTile = ({ name, rating, text, title }) => {
       }}
     >
       <BG>
-        <Padding padding={"2em"}>
-          <Margin value={"0 0 1em 0"}>
-            <div>{name}</div>
-          </Margin>
-
-          <Margin value={"0 0 .5em 0"}>
-            <Flex>
-              <StarRating rating={rating} size={"small"} />
+        <Padding padding={"1em"}>
+          <Flex>
+            <Flex
+              direction={"column"}
+              align={"center"}
+              style={{
+                marginRight: "1em",
+              }}
+            >
+              <UpvoteOutlined width={"1.3em"} height={"1.3em"} />
               <div
                 style={{
-                  marginLeft: ".75em",
-                  fontWeight: 600,
+                  fontSize: ".9em",
+                  margin: ".3em 0",
                 }}
               >
-                {title}
+                300
               </div>
+              <DownvoteOutlined width={"1.3em"} height={"1.3em"} />
             </Flex>
-          </Margin>
+            <div>
+              <Margin value={"0 0 1em 0"}>
+                <div>{name}</div>
+              </Margin>
 
-          <div
-            style={{
-              lineHeight: "1.5",
-            }}
-          >
-            {text}
-          </div>
+              <Margin value={"0 0 .5em 0"}>
+                <Flex>
+                  <StarRating rating={rating} size={"small"} />
+                  <div
+                    style={{
+                      marginLeft: ".75em",
+                      fontWeight: 600,
+                    }}
+                  >
+                    {title}
+                  </div>
+                </Flex>
+              </Margin>
+
+              <div
+                style={{
+                  lineHeight: "1.5",
+                }}
+              >
+                {text}
+              </div>
+            </div>
+          </Flex>
         </Padding>
       </BG>
     </div>

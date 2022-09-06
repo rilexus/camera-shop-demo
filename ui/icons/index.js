@@ -1,3 +1,5 @@
+export { default as DownvoteOutlined } from "./DownvoteOutlined/DownvoteOutlined";
+export { default as UpvoteOutlined } from "./UpvoteOutlined/UpvoteOutlined";
 export { default as StarOutlined } from "./StarOutlined/StarOutlined";
 export { default as CloseIcon } from "./Close/Close";
 export { default as TwitterFilled } from "./TwitterFilled/TwitterFilled";

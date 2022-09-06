@@ -44,7 +44,7 @@ const Info = ({ id }) => {
   const [counter, setCounter] = useState(1);
   const [, { addProduct }] = useCart();
   const [product] = useProduct(id);
-  const { name, price = {}, description } = product;
+  const { name, price = {}, description, details } = product;
 
   return (
     <Flex
@@ -69,7 +69,11 @@ const Info = ({ id }) => {
           <span>Price: </span>
           <span>{`${price.value}$`}</span>
         </p>
-        <p>
+        <p
+          style={{
+            lineHeight: "1.5",
+          }}
+        >
           <span>{description}</span>
         </p>
       </div>
@@ -99,7 +103,7 @@ const Info = ({ id }) => {
 
 const ProductPage = ({ id }) => {
   const [product = {}] = useProduct(id);
-  const { src, rating } = product;
+  const { src, rating, details } = product;
 
   return (
     <Layout
@@ -129,12 +133,7 @@ const ProductPage = ({ id }) => {
                 </Grid.Item>
 
                 <Grid.Item>
-                  <Detail summary={"Details"}>
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                    Dignissimos excepturi modi officiis omnis perferendis
-                    reiciendis soluta totam unde. Accusamus doloribus eaque et
-                    iusto magni modi nihil officiis qui similique tempore.
-                  </Detail>
+                  <Detail summary={"Details"}>{details}</Detail>
                   <Detail summary={"Reviews"}>
                     <Reviews id={id} />
                   </Detail>

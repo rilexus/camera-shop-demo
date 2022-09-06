@@ -34,13 +34,17 @@ const products = {
     name: "Polaroid",
     color: "white",
     brand: "Polaroid",
+    details:
+      '"Dimensions: L 5.9 × W 4.3 × H 3.8 in (L 150 × W 111 × H 97 mm) Weight: 1.08 lbs (493 grams) (without film pack) Battery: High performance lithium-ion battery (1100mAh), rechargeable via USB Outer shells: Polycarbonate + ABS plastics External viewfinder barrel Lens: Optical grade polycarbonate lens, coatedShutter system: Custom design using precision step motor',
     description:
-      "Accusamus aperiam atque aut beatae culpa dolores, enim exercitationem nemo nesciunt nihil nostrum odio possimus quo ratione rem sed velit veniam voluptatum!",
+      "Dimensions: L 5.9 × W 4.3 × H 3.8 in (L 150 × W 111 × H 97 mm) Weight: 1.08 lbs (493 grams) (without film pack) Battery: High performance lithium-ion battery (1100mAh), rechargeable via USB Outer shells: Polycarbonate + ABS plastics External viewfinder barrel Lens: Optical grade polycarbonate lens, coatedShutter system: Custom design using precision step motor",
   },
   2: {
     id: "2",
     reviews: ["1", "2"],
     category: "instant-camera",
+    details:
+      '"Dimensions: L 5.9 × W 4.3 × H 3.8 in (L 150 × W 111 × H 97 mm) Weight: 1.08 lbs (493 grams) (without film pack) Battery: High performance lithium-ion battery (1100mAh), rechargeable via USB Outer shells: Polycarbonate + ABS plastics External viewfinder barrel Lens: Optical grade polycarbonate lens, coatedShutter system: Custom design using precision step motor',
     condition: "new",
     rating: 5,
     src: "/intex_sq_400x400.png",
@@ -58,6 +62,8 @@ const products = {
     id: "3",
     reviews: [1],
     category: "instant-camera",
+    details:
+      '"Dimensions: L 5.9 × W 4.3 × H 3.8 in (L 150 × W 111 × H 97 mm) Weight: 1.08 lbs (493 grams) (without film pack) Battery: High performance lithium-ion battery (1100mAh), rechargeable via USB Outer shells: Polycarbonate + ABS plastics External viewfinder barrel Lens: Optical grade polycarbonate lens, coatedShutter system: Custom design using precision step motor',
     condition: "used",
     rating: 4,
     src: "/intax_mini_400x400.png",
@@ -77,6 +83,8 @@ const products = {
     reviews: [],
     category: "instant-camera",
     condition: "new",
+    details:
+      '"Dimensions: L 5.9 × W 4.3 × H 3.8 in (L 150 × W 111 × H 97 mm) Weight: 1.08 lbs (493 grams) (without film pack) Battery: High performance lithium-ion battery (1100mAh), rechargeable via USB Outer shells: Polycarbonate + ABS plastics External viewfinder barrel Lens: Optical grade polycarbonate lens, coatedShutter system: Custom design using precision step motor',
     rating: 5,
     src: "/polaroid_400x400.png",
     price: {
@@ -94,6 +102,8 @@ const products = {
     reviews: ["1", "2", "3"],
     category: "instant-camera",
     condition: "used",
+    details:
+      '"Dimensions: L 5.9 × W 4.3 × H 3.8 in (L 150 × W 111 × H 97 mm) Weight: 1.08 lbs (493 grams) (without film pack) Battery: High performance lithium-ion battery (1100mAh), rechargeable via USB Outer shells: Polycarbonate + ABS plastics External viewfinder barrel Lens: Optical grade polycarbonate lens, coatedShutter system: Custom design using precision step motor',
     rating: 5,
     src: "/intex_sq_400x400.png",
     price: {
@@ -110,6 +120,8 @@ const products = {
     id: "6",
     reviews: ["1", "2", "3"],
     category: "analog-camera",
+    details:
+      '"Dimensions: L 5.9 × W 4.3 × H 3.8 in (L 150 × W 111 × H 97 mm) Weight: 1.08 lbs (493 grams) (without film pack) Battery: High performance lithium-ion battery (1100mAh), rechargeable via USB Outer shells: Polycarbonate + ABS plastics External viewfinder barrel Lens: Optical grade polycarbonate lens, coatedShutter system: Custom design using precision step motor',
     condition: "new",
     rating: 3,
     src: "/intax_mini_400x400.png",
@@ -128,6 +140,8 @@ const products = {
     reviews: ["2"],
     category: "merge",
     condition: "new",
+    details:
+      '"Dimensions: L 5.9 × W 4.3 × H 3.8 in (L 150 × W 111 × H 97 mm) Weight: 1.08 lbs (493 grams) (without film pack) Battery: High performance lithium-ion battery (1100mAh), rechargeable via USB Outer shells: Polycarbonate + ABS plastics External viewfinder barrel Lens: Optical grade polycarbonate lens, coatedShutter system: Custom design using precision step motor',
     rating: 4,
     src: "/shirt_transparent_400x400.png",
     price: {
@@ -147,6 +161,8 @@ const products = {
     condition: "new",
     rating: 4,
     src: "/bag_400x400.png",
+    details:
+      '"Dimensions: L 5.9 × W 4.3 × H 3.8 in (L 150 × W 111 × H 97 mm) Weight: 1.08 lbs (493 grams) (without film pack) Battery: High performance lithium-ion battery (1100mAh), rechargeable via USB Outer shells: Polycarbonate + ABS plastics External viewfinder barrel Lens: Optical grade polycarbonate lens, coatedShutter system: Custom design using precision step motor',
     price: {
       value: 25,
       currency: "dollar",
@@ -163,6 +179,8 @@ const products = {
     category: "merge",
     condition: "new",
     rating: 4,
+    details:
+      '"Dimensions: L 5.9 × W 4.3 × H 3.8 in (L 150 × W 111 × H 97 mm) Weight: 1.08 lbs (493 grams) (without film pack) Battery: High performance lithium-ion battery (1100mAh), rechargeable via USB Outer shells: Polycarbonate + ABS plastics External viewfinder barrel Lens: Optical grade polycarbonate lens, coatedShutter system: Custom design using precision step motor',
     src: "/phone_400x400.png",
     price: {
       value: 10,

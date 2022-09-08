@@ -4,13 +4,13 @@ import { colors } from "../../../../ui/theme/theme";
 import StarRating from "../../../../components/StarRating/StarRating";
 import { Flex, Margin, Padding } from "../../../../ui";
 import scrollbarCss from "../../../../ui/css/scrollbar.css";
-import { DownvoteOutlined, UpvoteOutlined } from "../../../../ui/icons";
+import ReviewVote from "./components/ReviewVote/ReviewVote";
 
 const BG = styled.div`
   background-color: ${colors("gray.2")};
 `;
 
-const ReviewTile = ({ name, rating, text, title }) => {
+const ReviewTile = ({ name, rating, text, title, id }) => {
   return (
     <div
       style={{
@@ -21,24 +21,7 @@ const ReviewTile = ({ name, rating, text, title }) => {
       <BG>
         <Padding padding={"1em"}>
           <Flex>
-            <Flex
-              direction={"column"}
-              align={"center"}
-              style={{
-                marginRight: "1em",
-              }}
-            >
-              <UpvoteOutlined width={"1.3em"} height={"1.3em"} />
-              <div
-                style={{
-                  fontSize: ".9em",
-                  margin: ".3em 0",
-                }}
-              >
-                300
-              </div>
-              <DownvoteOutlined width={"1.3em"} height={"1.3em"} />
-            </Flex>
+            <ReviewVote id={id} />
             <div>
               <Margin value={"0 0 1em 0"}>
                 <div>{name}</div>
@@ -103,8 +86,9 @@ const Reviews = ({ id }) => {
             >
               <Margin value={"0 2em 0 0"}>
                 <ReviewTile
+                  id={id}
                   name={"Jakob"}
-                  title={"Some"}
+                  title={"Title"}
                   text={
                     "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium atque corporis culpa cum eaque est eum illum incidunt iure libero magnam natus nemo nesciunt, obcaecati officiis porro quaerat quod vitae."
                   }
@@ -120,7 +104,7 @@ const Reviews = ({ id }) => {
             >
               <Margin value={"0 2em 0 0"}>
                 <ReviewTile
-                  title={"Some"}
+                  title={"Title"}
                   name={"Jakob"}
                   text={
                     "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium atque corporis culpa cum eaque est eum illum incidunt iure libero magnam natus nemo nesciunt, obcaecati officiis porro quaerat quod vitae. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium atque corporis culpa cum eaque est eum illum incidunt iure libero magnam natus nemo nesciunt, obcaecati officiis porro quaerat quod vitae."
@@ -137,7 +121,7 @@ const Reviews = ({ id }) => {
             >
               <Margin value={"0 2em 0 0"}>
                 <ReviewTile
-                  title={"Some"}
+                  title={"Title"}
                   name={"Jakob"}
                   text={
                     "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium atque corporis culpa cum eaque est eum illum incidunt iure libero magnam natus nemo nesciunt, obcaecati officiis porro quaerat quod vitae."
@@ -154,7 +138,7 @@ const Reviews = ({ id }) => {
             >
               <Margin value={"0 2em 0 0"}>
                 <ReviewTile
-                  title={"Some"}
+                  title={"Title"}
                   name={"Jakob"}
                   text={
                     "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium atque corporis culpa cum eaque est eum illum incidunt iure libero magnam natus nemo nesciunt, obcaecati officiis porro quaerat quod vitae."

@@ -69,7 +69,7 @@ const CartIcon = () => {
         width={"1.2em"}
         height={"1.2em"}
         onClick={() => {
-          router.push("/checkout");
+          router.push("/cart");
         }}
       />
     </div>

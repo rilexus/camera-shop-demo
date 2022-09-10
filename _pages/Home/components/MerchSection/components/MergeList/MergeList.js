@@ -13,6 +13,7 @@ import { JUSTIFY } from "../../../../../../ui/Flex";
 import ScrollableList from "../../../../../../ui/ScrollableList/ScrollableList";
 import FavourButton from "../../../../../../components/FavourButton/FavourButton";
 import StarRating from "../../../../../../components/StarRating/StarRating";
+import Link from "next/link";
 
 const MergeTile = ({ id, src, title, price, description, rating }) => {
   const [isOver, ref] = useMouseOver();
@@ -33,7 +34,11 @@ const MergeTile = ({ id, src, title, price, description, rating }) => {
       <Flex justify={JUSTIFY.end}>
         <FavourButton id={id} />
       </Flex>
-      <img src={src} alt="" width={"auto"} height={"100%"} />
+      <Link href={`/product/${id}`}>
+        <a>
+          <img src={src} alt="" width={"auto"} height={"100%"} />
+        </a>
+      </Link>
       <Text align={"center"}>
         <div
           style={{
@@ -78,16 +83,14 @@ const MergeList = ({ products }) => {
         {products.map(({ name, price, description, src, id, rating }) => {
           return (
             <Margin value={"0 1em 0 0"} key={id}>
-              <a href={`/product/${id}`}>
-                <MergeTile
-                  id={id}
-                  rating={rating}
-                  title={name}
-                  price={`${price.value}$`}
-                  description={description}
-                  src={src}
-                />
-              </a>
+              <MergeTile
+                id={id}
+                rating={rating}
+                title={name}
+                price={`${price.value}$`}
+                description={description}
+                src={src}
+              />
             </Margin>
           );
         })}

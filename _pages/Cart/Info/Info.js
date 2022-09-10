@@ -2,28 +2,41 @@ import styled from "styled-components";
 import { colors } from "../../../ui/theme/theme";
 import { useRouter } from "next/router";
 import { LargeButton, Radio } from "../../../ui";
-import React, { useState } from "react";
+import React, { useCallback, useMemo, useState } from "react";
+import { useCart } from "../../../Providers/CartProvider/CartProvider";
 
 const BG = styled.div`
   background-color: ${colors("gray.2")};
 `;
+const freeze = (obj) => {
+  Object.freeze(obj);
+  return obj;
+};
+
+const defaultState = freeze({
+  store: false,
+  postal: false,
+  dhl: false,
+});
 
 const Info = () => {
+  const [cart] = useCart();
+  const products = useMemo(() => Object.values(cart), [cart]);
   const router = useRouter();
-  const [state, setState] = useState({
-    store: false,
-    postal: false,
-    dhl: false,
-  });
+  const [state, setState] = useState(defaultState);
 
   const handleChange = (name) => {
     return (e) => {
       const { checked } = e.target;
-      setState({ ...state, [name]: checked });
+
+      setState({
+        ...defaultState,
+        [name]: checked,
+      });
     };
   };
 
-  const valid = Object.values(state).some((s) => s);
+  const valid = Object.values(state).some((s) => s) && products.length;
 
   return (
     <BG

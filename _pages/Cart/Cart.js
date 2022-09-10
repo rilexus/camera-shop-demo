@@ -45,7 +45,6 @@ const ProductTable = ({ children }) => {
 
 const Cart = () => {
   const [cart] = useCart();
-
   const products = useMemo(() => Object.values(cart), [cart]);
 
   return (

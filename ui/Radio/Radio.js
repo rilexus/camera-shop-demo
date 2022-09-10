@@ -56,11 +56,11 @@ const StyledLabel = styled.label`
   }
 `;
 
-const Radio = ({ checked, id, label, onChange }) => {
+const Radio = ({ checked, id, label, onChange, name }) => {
   return (
     <StyledLabel htmlFor={id}>
       {label}
-      <input type="radio" checked={checked} name="radio" onChange={onChange} />
+      <input type="radio" checked={checked} onChange={onChange} name={name} />
       <span className="checkmark" />
     </StyledLabel>
   );

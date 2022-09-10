@@ -13,10 +13,33 @@ import {
 } from "../../../../ui";
 import { ALIGN, JUSTIFY } from "../../../../ui/Flex";
 import styled from "styled-components";
+import elasticFontSize from "../../../../ui/css/elasticFontSize";
 
 const LargeWhiteButton = styled(LargeButton)`
   color: white;
   border: 2px solid white;
+
+  &:hover {
+    color: white;
+    border: 2px solid white;
+    background-color: rgba(236, 236, 236, 0.22);
+  }
+`;
+
+const Title = styled.h1`
+  color: white;
+  line-height: 1.2;
+  font-weight: 600;
+  margin-bottom: 0.5em;
+  margin-top: 0em;
+  ${elasticFontSize(20, 60, 1, 1000)};
+`;
+
+const Subtitle = styled.p`
+  color: white;
+  line-height: 1.2;
+  margin-bottom: 1.3em;
+  ${elasticFontSize(10, 24, 1, 500)};
 `;
 
 const CaruselSection = () => {
@@ -53,17 +76,18 @@ const CaruselSection = () => {
               >
                 <Grid>
                   <Grid.Item sm={10} md={10} />
-                  <Grid.Item sm={50} md={33.333}>
+                  <Grid.Item sm={80} md={70} l={55}>
                     <Text align={"center"}>
-                      <div>NEW</div>
                       <div
                         style={{
-                          fontSize: "1.5rem",
+                          fontWeight: 900,
+                          color: "red",
                         }}
                       >
-                        NISHIKA N8000 35mm 3-D Point & Shoot Film Camera
+                        NEW
                       </div>
-                      <div>
+                      <Title>NISHIKA N8000 35mm 3-D</Title>
+                      <Subtitle>
                         Lorem ipsum dolor sit amet, consectetur adipisicing
                         elit. Aspernatur deserunt dolorem, doloremque dolorum
                         explicabo itaque minima molestiae quibusdam! Aliquam
@@ -73,7 +97,7 @@ const CaruselSection = () => {
                         quia. Culpa cupiditate debitis dolore, dolorum error
                         exercitationem expedita hic id illo labore minus
                         mollitia nesciunt provident quam velit voluptatibus?
-                      </div>
+                      </Subtitle>
                       <LargeWhiteButton>Buy now</LargeWhiteButton>
                     </Text>
                   </Grid.Item>
@@ -100,13 +124,24 @@ const CaruselSection = () => {
                 <Text align={"center"}>
                   <h1
                     style={{
+                      fontSize: "3rem",
+                      lineHeight: "1.2",
                       color: "white",
+                      marginBottom: "0",
                     }}
                   >
                     Movie Development
                   </h1>
-                  <p>Develop your films where professionals do it</p>
-                  <LargeButton>More Info</LargeButton>
+                  <p
+                    style={{
+                      color: "white",
+                      lineHeight: "1.2",
+                      fontSize: "1.3rem",
+                    }}
+                  >
+                    Develop your films where professionals do it
+                  </p>
+                  <LargeWhiteButton>More Info</LargeWhiteButton>
                 </Text>
               </Flex>
             </CoverImage>

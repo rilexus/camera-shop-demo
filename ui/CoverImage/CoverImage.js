@@ -17,7 +17,7 @@ const C = styled.div`
 const Tint = styled.div`
   inset: 0;
   position: absolute;
-  background-color: rgba(0, 0, 0, 0.2);
+  background-color: rgba(0, 0, 0, 0.5);
 `;
 const CoverImage = ({ url, children }) => {
   return (

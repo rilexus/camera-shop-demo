@@ -16,6 +16,7 @@ import styled from "styled-components";
 import { CloseIcon } from "../ui/icons";
 import { colors } from "../ui/theme/theme";
 import { Counter } from "../ui/Counter";
+import { useRouter } from "next/router";
 
 const Th = styled.th`
   text-align: left;
@@ -81,6 +82,8 @@ const BG = styled.div`
 `;
 
 const Info = () => {
+  const router = useRouter();
+
   return (
     <BG
       style={{
@@ -124,7 +127,13 @@ const Info = () => {
         Total 300$
       </div>
       <div>
-        <LargeButton>Checkout</LargeButton>
+        <LargeButton
+          onClick={() => {
+            router.push("/registration");
+          }}
+        >
+          Checkout
+        </LargeButton>
       </div>
     </BG>
   );

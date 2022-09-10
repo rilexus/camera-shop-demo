@@ -20,11 +20,8 @@ const LoginForm = () => {
   return (
     <div>
       <div>
-        <b>Do you have an account? Please, log in.</b>
-        <Margin value={"1em 0 0 0"}>
-          <EmailInput />
-          <PasswordInput />
-        </Margin>
+        <EmailInput />
+        <PasswordInput />
       </div>
       <div>
         <Label>
@@ -57,6 +54,15 @@ const RegistrationPage = () => {
             <Padding padding={"6em 0 0 0"}>
               <Grid>
                 <Grid.Item sm={"40"}>
+                  <b
+                    style={{
+                      fontSize: "1.2em",
+                      display: "block",
+                      padding: "0 0 1em 0",
+                    }}
+                  >
+                    Do you have an account? Please, log in.
+                  </b>
                   <Margin value={"0 0 2em 0"}>
                     <LoginForm />
                   </Margin>
@@ -66,8 +72,18 @@ const RegistrationPage = () => {
                     }}
                   />
                   <div>
-                    <b>New Customer - Billing Address</b>
-                    <RegistrationForm />
+                    <b
+                      style={{
+                        fontSize: "1.2em",
+                        display: "block",
+                        padding: "0 0 1em 0",
+                      }}
+                    >
+                      New Customer - Billing Address
+                    </b>
+                    <Margin>
+                      <RegistrationForm />
+                    </Margin>
                   </div>
                 </Grid.Item>
               </Grid>

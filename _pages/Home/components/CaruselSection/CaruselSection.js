@@ -37,9 +37,9 @@ const Title = styled.h1`
 
 const Subtitle = styled.p`
   color: white;
-  line-height: 1.2;
+  line-height: 1.25;
   margin-bottom: 1.3em;
-  ${elasticFontSize(10, 24, 1, 500)};
+  ${elasticFontSize(10, 20, 1, 500)};
 `;
 
 const CaruselSection = () => {
@@ -50,7 +50,7 @@ const CaruselSection = () => {
         spaceBetween={0}
         loop={true}
         autoplay={{
-          delay: 2500,
+          delay: 4000,
           disableOnInteraction: false,
         }}
         pagination={{

@@ -28,6 +28,9 @@ const colors = (path) => {
   const get = memo((theme, path) => {
     const keys = ["colors", ...path.split(".")];
     return keys.reduce((acc, cur) => {
+      if (!acc[cur]) {
+        throw new Error(`Theme: No theme value for ${path}.`);
+      }
       return acc[cur];
     }, theme);
   });

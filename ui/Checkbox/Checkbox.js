@@ -2,9 +2,9 @@ import styled from "styled-components";
 import React from "react";
 
 const StyledLabel = styled.label`
-  display: block;
   position: relative;
-  padding-left: 35px;
+  padding-left: 18px;
+  padding-top: 1px;
   margin-bottom: 12px;
   cursor: pointer;
   -webkit-user-select: none;

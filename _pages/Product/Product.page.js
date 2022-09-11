@@ -1,6 +1,14 @@
 import React, { useState } from "react";
 import { useProduct } from "../../Providers/ProductsProvider";
-import { Container, Flex, Grid, LargeButton, Padding } from "../../ui";
+import {
+  BreadCrumb,
+  Container,
+  Flex,
+  Grid,
+  LargeButton,
+  Margin,
+  Padding,
+} from "../../ui";
 import Layout from "../../components/Layout/Layout";
 import Footer from "../../components/Footer/Footer";
 import { Navigation, ProductSuggestions } from "../../components";
@@ -103,15 +111,24 @@ const Info = ({ id }) => {
 
 const ProductPage = ({ id }) => {
   const [product = {}] = useProduct(id);
-  const { src, rating, details } = product;
+  const { src, rating, details, name } = product;
 
   return (
     <Layout
       navigation={<Navigation />}
       main={
-        <Padding padding={"15vh 0 0 0"}>
+        <Padding padding={"9vh 0 0 0"}>
           <main>
             <Container>
+              <Margin value={"0em 0 5em 0"}>
+                <BreadCrumb
+                  crumbs={[
+                    { label: "Home", href: "/" },
+                    { label: "Shop", href: "/shop" },
+                    { label: name, href: `/product/${id}` },
+                  ]}
+                />
+              </Margin>
               <Grid gutter={"2.5em"}>
                 <Grid.Item md={60} l={40}>
                   <Flex justify={"center"}>

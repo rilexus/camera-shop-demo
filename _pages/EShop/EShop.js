@@ -1,5 +1,5 @@
 import React from "react";
-import { Checkbox, Flex, Padding, Text } from "../../ui";
+import { BreadCrumb, Checkbox, Flex, Margin, Padding, Text } from "../../ui";
 import Layout from "../../components/Layout/Layout";
 import { Navigation } from "../../components";
 import styled, { useTheme } from "styled-components";
@@ -190,8 +190,15 @@ const EShop = ({ intro }) => {
       navigation={<Navigation />}
       main={
         <div>
-          <Padding padding={"6rem 0 0 0"}>
-            Home &gt; Shop
+          <Padding padding={"5rem 0 0 0"}>
+            <Margin value={"0 0 0 2em"}>
+              <BreadCrumb
+                crumbs={[
+                  { label: "Home", href: "/" },
+                  { label: "Shop", href: "/shop" },
+                ]}
+              />
+            </Margin>
             <Intro title={intro.title} description={intro.description} />
             <HorizontalLine />
             <div

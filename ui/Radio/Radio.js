@@ -4,8 +4,8 @@ import React from "react";
 const StyledLabel = styled.label`
   display: block;
   position: relative;
-  padding-left: 35px;
-  margin-bottom: 12px;
+  padding-left: 25px;
+  margin-bottom: 10px;
   cursor: pointer;
   user-select: none;
 

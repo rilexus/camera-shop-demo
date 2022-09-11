@@ -11,6 +11,7 @@ import Link from "next/link";
 import { l, md, sm, xl } from "../../ui/css/medias";
 import { useRouter } from "next/router";
 import { QueryCheckbox } from "./components";
+import Detail from "../../ui/Details/Details";
 
 const Description = styled.p`
   line-height: 1.45;
@@ -72,15 +73,6 @@ const Product = ({ id }) => {
   );
 };
 
-const Details = ({ children }) => {
-  return <details>{children}</details>;
-};
-
-const StyledSummary = styled.summary`
-  margin-bottom: 1em;
-  cursor: pointer;
-`;
-
 const PriceInput = styled.input`
   box-sizing: border-box;
   width: 5em;
@@ -95,16 +87,6 @@ const PriceInput = styled.input`
     border: 1px solid red;
   }
 `;
-
-const Detail = ({ summary, children }) => {
-  return (
-    <Details>
-      <StyledSummary>{summary}</StyledSummary>
-
-      <Padding padding={"0 0 1em 1em"}>{children}</Padding>
-    </Details>
-  );
-};
 
 const Sidebar = () => {
   return (

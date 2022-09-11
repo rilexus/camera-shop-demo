@@ -17,6 +17,8 @@ import EmailInput from "./components/EmailInput";
 import PasswordInput from "./components/PasswordInput";
 import Label from "./components/Label";
 import NewsLatter from "../../components/NewsLatter/NewsLatter";
+import Info from "./components/Info/Info";
+import Detail from "../../ui/Details/Details";
 
 const LoginForm = () => {
   return (
@@ -92,21 +94,27 @@ const CheckoutPage = () => {
         >
           <Container>
             <Padding padding={"6em 0 0 0"}>
-              <Grid gutter={"5em"}>
-                <Grid.Item sm={"40"}>
-                  <Login />
+              <Grid gutter={"4em"}>
+                <Grid.Item sm={100} md={50}>
+                  <Detail summary={"Login"} open={true}>
+                    <Login />
+                  </Detail>
                   <hr
                     style={{
-                      margin: "4em 0",
+                      margin: "1em 0 2em 0",
                     }}
                   />
-                  <Margin value={"0 0 3em 0"}>
-                    <Register />
+                  <Margin value={"0 0 0 0"}>
+                    <Detail summary={"Register"}>
+                      <Register />
+                    </Detail>
                   </Margin>
                 </Grid.Item>
-                <Grid.Item sm={60}>60</Grid.Item>
+                <Grid.Item sm={100} md={50}>
+                  <Info />
+                </Grid.Item>
               </Grid>
-              <Padding padding={"5em 0"}>
+              <Padding padding={"10em 0"}>
                 <NewsLatter />
               </Padding>
             </Padding>

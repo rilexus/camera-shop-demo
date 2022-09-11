@@ -1,7 +1,8 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import { colors } from "../../../../ui/theme/theme";
 import { LargeButton, Margin, Padding, Radio, Text } from "../../../../ui";
+import { useRadio } from "../../../../hooks";
 
 const BG = styled.div`
   background-color: ${colors("gray.2")};
@@ -16,32 +17,81 @@ const Subtitle = styled.div`
   margin: 1em 0;
 `;
 
-const Delivery = () => {
+const Delivery = ({ onChange }) => {
+  const { values, register } = useRadio({
+    initialValues: {
+      store: false,
+      postal: false,
+      dhl: false,
+    },
+  });
+
+  useEffect(() => {
+    Object.entries(values).forEach(([name, checked]) => {
+      if (checked) {
+        onChange?.({ target: { name, checked } });
+      }
+    });
+  }, [values]);
+
   return (
     <div>
       <Subtitle>Delivery method:</Subtitle>
       <div>
-        <Radio label={"Pick up at the store"} />
-        <Radio label={"Delivery by postal office"} />
-        <Radio label={"DHL courier"} />
+        <Radio
+          label={"Pick up at the store"}
+          {...register({ name: "store" })}
+        />
+        <Radio
+          label={"Delivery by postal office"}
+          {...register({ name: "postal" })}
+        />
+        <Radio label={"DHL courier"} {...register({ name: "dhl" })} />
       </div>
     </div>
   );
 };
 
-const Payment = () => {
+const Payment = ({ onChange }) => {
+  const { values, register } = useRadio({
+    initialValues: {
+      credit: false,
+      cash: false,
+    },
+  });
+  useEffect(() => {
+    Object.entries(values).forEach(([name, checked]) => {
+      if (checked) {
+        onChange?.({ target: { name, checked } });
+      }
+    });
+  }, [values]);
+
   return (
     <div>
       <Subtitle>Payment method:</Subtitle>
       <div>
-        <Radio label={"Credit card"} />
-        <Radio label={"Cash on delivery"} />
+        <Radio label={"Credit card"} {...register({ name: "credit" })} />
+        <Radio label={"Cash on delivery"} {...register({ name: "cash" })} />
       </div>
     </div>
   );
 };
 
 const Info = () => {
+  const [state, setState] = useState({
+    delivery: null,
+    payment: null,
+  });
+
+  const valid = state.delivery !== null && state.payment !== null;
+
+  const set = (name) => {
+    return (e) => {
+      setState((s) => ({ ...s, [name]: e.target.name }));
+    };
+  };
+
   return (
     <section>
       <BG>
@@ -57,9 +107,9 @@ const Info = () => {
             <Subtitle>Subtotal: 400$</Subtitle>
           </div>
           <hr />
-          <Delivery />
+          <Delivery onChange={set("delivery")} />
           <hr />
-          <Payment />
+          <Payment onChange={set("payment")} />
           <hr />
           <Padding padding={"1em 0 1.2em 0"}>
             <div
@@ -79,7 +129,7 @@ const Info = () => {
             </div>
           </Padding>
           <Text align={"center"}>
-            <LargeButton>Confirm</LargeButton>
+            <LargeButton disabled={!valid}>Confirm</LargeButton>
           </Text>
         </Padding>
       </BG>

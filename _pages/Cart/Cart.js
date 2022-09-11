@@ -117,10 +117,10 @@ const Cart = () => {
                 </Grid.Item>
               </Grid>
             </Padding>
+            <Margin value={"5em 0"}>
+              <ProductSuggestions />
+            </Margin>
           </Container>
-          <Margin value={"5em 0"}>
-            <ProductSuggestions />
-          </Margin>
         </div>
       }
       footer={<Footer />}

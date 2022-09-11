@@ -1,12 +1,23 @@
 import React, { useMemo } from "react";
 import { useCart } from "../../Providers/CartProvider/CartProvider";
 import Layout from "../../components/Layout/Layout";
-import { Navigation } from "../../components";
-import { Container, Grid, Padding } from "../../ui";
+import { Navigation, ProductSuggestions } from "../../components";
+import {
+  Button,
+  Container,
+  Flex,
+  Grid,
+  Input,
+  Margin,
+  Padding,
+} from "../../ui";
 import Footer from "../../components/Footer/Footer";
 import styled from "styled-components";
 import Info from "./Info/Info";
 import ProductListElement from "./ProductListElement/ProductListElement";
+import ButtonSlim from "../../ui/buttons/ButtonSlim/ButtonSlim";
+import { useInput } from "../../hooks";
+import { colors } from "../../ui/theme/theme";
 const Th = styled.th`
   text-align: left;
   padding: 1em 0;
@@ -42,6 +53,36 @@ const ProductTable = ({ children }) => {
     </Table>
   );
 };
+const Coupon = () => {
+  const input = useInput({ initialValue: "" });
+
+  return (
+    <Flex align={"center"}>
+      <Input
+        placeholder={"Coupon"}
+        type={"text"}
+        style={{
+          maxWidth: "300px",
+        }}
+        {...input}
+      />
+      <Margin value={"0 0 0 1em"}>
+        <ButtonSlim disabled={input.value === ""}>Apply</ButtonSlim>
+      </Margin>
+    </Flex>
+  );
+};
+
+const Styled = styled.div`
+  text-align: center;
+  font-size: 2em;
+  color: ${colors("gray.4")};
+  margin: 2em;
+`;
+
+const NoProducts = () => {
+  return <Styled>No products added</Styled>;
+};
 
 const Cart = () => {
   const [cart] = useCart();
@@ -51,29 +92,36 @@ const Cart = () => {
     <Layout
       navigation={<Navigation />}
       main={
-        <Container>
-          <Padding
-            padding={"6rem 0 0 0"}
-            style={{
-              minHeight: "100vh",
-            }}
-          >
-            <Grid gutter={"3em"}>
-              <Grid.Item sm={60}>
-                <ProductTable>
-                  {products.map((product) => {
-                    return (
-                      <ProductListElement id={product.id} key={product.id} />
-                    );
-                  })}
-                </ProductTable>
-              </Grid.Item>
-              <Grid.Item sm={40}>
-                <Info />
-              </Grid.Item>
-            </Grid>
-          </Padding>
-        </Container>
+        <div>
+          <Container>
+            <Padding padding={"6rem 0 0 0"} style={{}}>
+              <Grid gutter={"3em"}>
+                <Grid.Item sm={60}>
+                  <Margin value={"0 0 3em 0"}>
+                    <ProductTable>
+                      {products.map((product) => {
+                        return (
+                          <ProductListElement
+                            id={product.id}
+                            key={product.id}
+                          />
+                        );
+                      })}
+                    </ProductTable>
+                    {products.length === 0 ? <NoProducts /> : null}
+                  </Margin>
+                  <Coupon />
+                </Grid.Item>
+                <Grid.Item sm={40}>
+                  <Info />
+                </Grid.Item>
+              </Grid>
+            </Padding>
+          </Container>
+          <Margin value={"5em 0"}>
+            <ProductSuggestions />
+          </Margin>
+        </div>
       }
       footer={<Footer />}
     />

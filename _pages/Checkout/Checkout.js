@@ -7,6 +7,7 @@ import {
   Container,
   Flex,
   Grid,
+  Input,
   Margin,
   Padding,
 } from "../../ui";
@@ -15,6 +16,7 @@ import RegistrationForm from "./components/RegistrationForm/RegistrationForm";
 import EmailInput from "./components/EmailInput";
 import PasswordInput from "./components/PasswordInput";
 import Label from "./components/Label";
+import NewsLatter from "../../components/NewsLatter/NewsLatter";
 
 const LoginForm = () => {
   return (
@@ -40,7 +42,45 @@ const LoginForm = () => {
   );
 };
 
-const RegistrationPage = () => {
+const Login = () => {
+  return (
+    <div>
+      <b
+        style={{
+          fontSize: "1.2em",
+          display: "block",
+          padding: "0 0 1em 0",
+        }}
+      >
+        Do you have an account? Please, log in.
+      </b>
+      <Margin value={"0 0 2em 0"}>
+        <LoginForm />
+      </Margin>
+    </div>
+  );
+};
+
+const Register = () => {
+  return (
+    <div>
+      <b
+        style={{
+          fontSize: "1.2em",
+          display: "block",
+          padding: "0 0 1em 0",
+        }}
+      >
+        New Customer - Billing Address
+      </b>
+      <Margin>
+        <RegistrationForm />
+      </Margin>
+    </div>
+  );
+};
+
+const CheckoutPage = () => {
   return (
     <Layout
       navigation={<Navigation />}
@@ -52,41 +92,23 @@ const RegistrationPage = () => {
         >
           <Container>
             <Padding padding={"6em 0 0 0"}>
-              <Grid>
+              <Grid gutter={"5em"}>
                 <Grid.Item sm={"40"}>
-                  <b
-                    style={{
-                      fontSize: "1.2em",
-                      display: "block",
-                      padding: "0 0 1em 0",
-                    }}
-                  >
-                    Do you have an account? Please, log in.
-                  </b>
-                  <Margin value={"0 0 2em 0"}>
-                    <LoginForm />
-                  </Margin>
+                  <Login />
                   <hr
                     style={{
                       margin: "4em 0",
                     }}
                   />
-                  <div>
-                    <b
-                      style={{
-                        fontSize: "1.2em",
-                        display: "block",
-                        padding: "0 0 1em 0",
-                      }}
-                    >
-                      New Customer - Billing Address
-                    </b>
-                    <Margin>
-                      <RegistrationForm />
-                    </Margin>
-                  </div>
+                  <Margin value={"0 0 3em 0"}>
+                    <Register />
+                  </Margin>
                 </Grid.Item>
+                <Grid.Item sm={60}>60</Grid.Item>
               </Grid>
+              <Padding padding={"5em 0"}>
+                <NewsLatter />
+              </Padding>
             </Padding>
           </Container>
         </div>
@@ -96,4 +118,4 @@ const RegistrationPage = () => {
   );
 };
 
-export default RegistrationPage;
+export default CheckoutPage;

@@ -1,12 +1,8 @@
 import React from "react";
-import Layout from "../components/Layout/Layout";
-import { Container, Padding } from "../ui";
-import Footer from "../components/Footer/Footer";
-import { Navigation } from "../components";
-import RegistrationPage from "../_pages/Registration/Registration";
+import CheckoutPage from "../_pages/Checkout/Checkout";
 
 const Checkout = () => {
-  return <RegistrationPage />;
+  return <CheckoutPage />;
 };
 
 export default Checkout;

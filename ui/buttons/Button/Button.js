@@ -12,6 +12,7 @@ const Button = styled.button`
   padding: 0.7em 1.5em 0.7em 1.5em;
   font-size: 1rem;
   border: 2px solid black;
+  white-space: nowrap;
   &:hover {
     background: ${colors("gray.1")};
   }
@@ -19,7 +20,11 @@ const Button = styled.button`
     border: 2px solid blue;
     color: blue;
   }
-  white-space: nowrap;
+
+  &:disabled {
+    cursor: not-allowed;
+    border-color: ${colors("gray.3")};
+  }
 `;
 
 export default Button;

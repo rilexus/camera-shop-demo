@@ -3,7 +3,7 @@ import { useProduct } from "../../Providers/ProductsProvider";
 import { Container, Flex, Grid, LargeButton, Padding } from "../../ui";
 import Layout from "../../components/Layout/Layout";
 import Footer from "../../components/Footer/Footer";
-import { Navigation } from "../../components";
+import { Navigation, ProductSuggestions } from "../../components";
 import StarRating from "../../components/StarRating/StarRating";
 import FavourButton from "../../components/FavourButton/FavourButton";
 import styled from "styled-components";
@@ -145,6 +145,7 @@ const ProductPage = ({ id }) => {
                   </Detail>
                 </Grid.Item>
               </Grid>
+              <ProductSuggestions />
             </Container>
           </main>
         </Padding>

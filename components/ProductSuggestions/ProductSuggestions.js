@@ -1,32 +1,47 @@
 import React, { Children } from "react";
 import styled from "styled-components";
 import { colors } from "../../ui/theme/theme";
-import { Padding, Text } from "../../ui";
+import { Flex, Padding, Text } from "../../ui";
 import FavourButton from "../FavourButton/FavourButton";
 import scrollbarCss from "../../ui/css/scrollbar.css";
+import Link from "next/link";
 
 const BG = styled.div`
   background-color: ${colors("gray.1")};
+  border-radius: 0.2em;
+  position: relative;
 `;
 
 const ProductTileSmall = ({ src, name, id }) => {
   return (
     <BG>
-      <Padding padding={"1em"}>
-        <FavourButton id={id} />
-        <div>
-          <img src={src} width={"130px"} height={"auto"} />
+      <Padding padding={"2.5em 2em 1.5em 2em"}>
+        <div
+          style={{
+            position: "absolute",
+            right: ".5em",
+            top: ".5em",
+          }}
+        >
+          <FavourButton id={id} />
         </div>
-        <Text align={"center"}>
-          <div>{name}</div>
-          <div
-            style={{
-              fontSize: ".8em",
-            }}
-          >
-            300$
-          </div>
-        </Text>
+        <Link href={`/product/${id}`}>
+          <a>
+            <img src={src} width={"130px"} height={"auto"} />
+          </a>
+        </Link>
+        <Padding padding={"1em 0 0 0"}>
+          <Text align={"center"}>
+            <div>{name}</div>
+            <div
+              style={{
+                fontSize: ".8em",
+              }}
+            >
+              300$
+            </div>
+          </Text>
+        </Padding>
       </Padding>
     </BG>
   );
@@ -67,28 +82,60 @@ const ProductSuggestions = () => {
       </Text>
       <ScrollView>
         <div>
-          <ProductTileSmall name={"Some"} src={"/polaroid_400x400.png"} />
+          <ProductTileSmall
+            id={1}
+            name={"Polaroid"}
+            src={"/polaroid_400x400.png"}
+          />
         </div>
         <div>
-          <ProductTileSmall name={"Some"} src={"/polaroid_400x400.png"} />
+          <ProductTileSmall
+            id={1}
+            name={"Polaroid"}
+            src={"/polaroid_400x400.png"}
+          />
         </div>
         <div>
-          <ProductTileSmall name={"Some"} src={"/polaroid_400x400.png"} />
+          <ProductTileSmall
+            id={1}
+            name={"Polaroid"}
+            src={"/polaroid_400x400.png"}
+          />
         </div>
         <div>
-          <ProductTileSmall name={"Some"} src={"/polaroid_400x400.png"} />
+          <ProductTileSmall
+            id={1}
+            name={"Polaroid"}
+            src={"/polaroid_400x400.png"}
+          />
         </div>
         <div>
-          <ProductTileSmall name={"Some"} src={"/polaroid_400x400.png"} />
+          <ProductTileSmall
+            id={1}
+            name={"Polaroid"}
+            src={"/polaroid_400x400.png"}
+          />
         </div>
         <div>
-          <ProductTileSmall name={"Some"} src={"/polaroid_400x400.png"} />
+          <ProductTileSmall
+            id={1}
+            name={"Polaroid"}
+            src={"/polaroid_400x400.png"}
+          />
         </div>
         <div>
-          <ProductTileSmall name={"Some"} src={"/polaroid_400x400.png"} />
+          <ProductTileSmall
+            id={1}
+            name={"Polaroid"}
+            src={"/polaroid_400x400.png"}
+          />
         </div>
         <div>
-          <ProductTileSmall name={"Some"} src={"/polaroid_400x400.png"} />
+          <ProductTileSmall
+            id={1}
+            name={"Polaroid"}
+            src={"/polaroid_400x400.png"}
+          />
         </div>
       </ScrollView>
     </section>

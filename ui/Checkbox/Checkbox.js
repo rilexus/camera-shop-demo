@@ -11,6 +11,7 @@ const StyledLabel = styled.label`
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none;
+  display: block;
 
   /* Hide the browser's default checkbox */
   input {
@@ -56,7 +57,6 @@ const StyledCheckmark = styled.span`
   background-color: transparent;
 
   border: 1px solid black;
-
   &:after {
     content: "";
     position: absolute;
@@ -67,7 +67,13 @@ const StyledCheckmark = styled.span`
 const Checkbox = ({ id, name, label, checked, onChange }) => {
   return (
     <StyledLabel htmlFor={id}>
-      <span>{label}</span>
+      <span
+        style={{
+          marginLeft: ".3em",
+        }}
+      >
+        {label}
+      </span>
       <input
         type="checkbox"
         id={id}

@@ -195,7 +195,7 @@ const EShop = ({ intro }) => {
               <BreadCrumb
                 crumbs={[
                   { label: "Home", href: "/" },
-                  { label: "Shop", href: "/shop" },
+                  { label: "Shop", href: "/shop", current: true },
                 ]}
               />
             </Margin>

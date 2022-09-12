@@ -125,7 +125,7 @@ const ProductPage = ({ id }) => {
                   crumbs={[
                     { label: "Home", href: "/" },
                     { label: "Shop", href: "/shop" },
-                    { label: name, href: `/product/${id}` },
+                    { label: name, href: `/product/${id}`, current: true },
                   ]}
                 />
               </Margin>

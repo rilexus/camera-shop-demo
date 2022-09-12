@@ -5,6 +5,9 @@ const colors = {
     3: "rgb(148,148,148)",
     4: "#bdbdbd",
   },
+  red: {
+    1: "#db3119",
+  },
 };
 
 export default colors;

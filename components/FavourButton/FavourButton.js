@@ -3,19 +3,27 @@ import { HeartFilled } from "../../ui/icons";
 import HeartOutlined from "../../ui/icons/HeartOutlined/HeartOutlined";
 import ButtonStyleless from "../../ui/buttons/ButtonStyleless/ButtonStyleless";
 import { useFavouredProducts } from "../../Providers/FavorProvider";
+import { useTheme } from "styled-components";
+import { colors } from "../../ui/theme/theme";
 
 const HeartIcon = ({ type = "filled", ...props }) => {
+  const theme = useTheme();
   return (
     <>
       {type === "filled" ? (
-        <HeartFilled {...props} height={"1.5em"} width={"1.5em"} fill={"red"} />
+        <HeartFilled
+          {...props}
+          height={"1.5em"}
+          width={"1.5em"}
+          fill={colors("red.1")({ theme })}
+        />
       ) : null}
       {type === "outlined" ? (
         <HeartOutlined
           {...props}
           height={"1.5em"}
           width={"1.5em"}
-          fill={"red"}
+          fill={colors("red.1")({ theme })}
         />
       ) : null}
     </>

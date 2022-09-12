@@ -1,10 +1,19 @@
 import { Flex } from "../index";
 import Link from "next/link";
+import styled from "styled-components";
+import { colors } from "../theme/theme";
+
+const A = styled.a`
+  cursor: pointer;
+  color: ${({ current, theme }) => {
+    return current ? "gray" : colors("red.1")({ theme });
+  }};
+`;
 
 const BreadCrumb = ({ crumbs }) => {
   return (
     <Flex align={"center"}>
-      {crumbs.map(({ label, href }, idx) => {
+      {crumbs.map(({ label, href, current }, idx) => {
         return (
           <Flex
             align={"center"}
@@ -14,7 +23,7 @@ const BreadCrumb = ({ crumbs }) => {
             }}
           >
             <Link href={href}>
-              <a>{label}</a>
+              <A current={current}>{label}</A>
             </Link>
             <span
               style={{

@@ -4,7 +4,7 @@ import { ALIGN, JUSTIFY } from "../../ui/Flex";
 import { BagOutlined, HeartFilled, HeartOutlined } from "../../ui/icons";
 import { useInput } from "../../hooks";
 import PersonOutlined from "../../ui/icons/PersonOutlined/PersonOutlined";
-import styled from "styled-components";
+import styled, { useTheme } from "styled-components";
 import EyeOutlined from "../../ui/icons/EyeOutlined/EyeOutlined";
 import { sm } from "../../ui/css/medias";
 import { useFavouredProducts } from "../../Providers/FavorProvider";
@@ -15,6 +15,7 @@ import { useCart } from "../../Providers/CartProvider/CartProvider";
 import { useProducts } from "../../Providers/ProductsProvider";
 import { Badge } from "../../ui/Badge";
 import { useRouter } from "next/router";
+import { colors } from "../../ui/theme/theme";
 
 const CartMenu = () => {
   const [products] = useProducts();
@@ -79,6 +80,7 @@ const CartIcon = () => {
 const FavoredIcon = () => {
   const [favouredProducts] = useFavouredProducts();
   const hasProducts = favouredProducts.length > 0;
+  const theme = useTheme();
   return (
     <div
       style={{
@@ -86,7 +88,11 @@ const FavoredIcon = () => {
       }}
     >
       {hasProducts ? (
-        <HeartFilled width={"1.2em"} height={"1.2em"} fill={"red"} />
+        <HeartFilled
+          width={"1.2em"}
+          height={"1.2em"}
+          fill={colors("red.1")({ theme })}
+        />
       ) : (
         <HeartOutlined width={"1.2em"} height={"1.2em"} />
       )}
@@ -138,12 +144,19 @@ const MediaHide = styled.div`
   `}
 `;
 
+const A = styled.a`
+  cursor: pointer;
+  &:hover {
+    color: ${colors("red.1")};
+  }
+`;
+
 const Navigation = () => {
   return (
     <Layout
       logo={
         <Link href={"/"}>
-          <a>
+          <A>
             <Flex justify={JUSTIFY.center} align={"center"}>
               <Margin value={"0 .2em 0 0"}>
                 <EyeOutlined width={"2em"} height={"2em"} />
@@ -152,7 +165,7 @@ const Navigation = () => {
                 <MediaHide>ANALOG</MediaHide>
               </Margin>
             </Flex>
-          </a>
+          </A>
         </Link>
       }
       main={
@@ -160,14 +173,30 @@ const Navigation = () => {
           <Flex>
             <Margin value={"0 1em 0 0"}>
               <span>
-                <Link href={"/shop"}>Shop</Link>
+                <Link href={"/shop"}>
+                  <A>Shop</A>
+                </Link>
               </span>
             </Margin>
             <Margin value={"0 1em 0 0"}>
-              <span>Services</span>
+              <span
+                style={{
+                  cursor: "not-allowed",
+                  color: "gray",
+                }}
+              >
+                Services
+              </span>
             </Margin>
             <Margin>
-              <span>Custom</span>
+              <span
+                style={{
+                  cursor: "not-allowed",
+                  color: "gray",
+                }}
+              >
+                Custom
+              </span>
             </Margin>
           </Flex>
         </div>

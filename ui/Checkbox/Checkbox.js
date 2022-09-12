@@ -1,5 +1,8 @@
 import styled from "styled-components";
 import React from "react";
+import { colors } from "../theme/theme";
+
+const red1 = colors("red.1");
 
 const StyledLabel = styled.label`
   position: relative;
@@ -22,7 +25,7 @@ const StyledLabel = styled.label`
     width: 0;
 
     &:checked ~ .checkmark {
-      border: 1px solid red;
+      border: 1px solid ${red1};
     }
     &:checked ~ .checkmark:after {
       display: block;
@@ -30,11 +33,11 @@ const StyledLabel = styled.label`
   }
 
   &:hover {
-    color: red;
+    color: ${red1};
   }
 
   &:hover .checkmark {
-    border: 1px solid red;
+    border: 1px solid ${red1};
   }
 
   .checkmark:after {
@@ -42,7 +45,7 @@ const StyledLabel = styled.label`
     top: 1px;
     width: 5px;
     height: 10px;
-    border: solid red;
+    border: solid ${red1};
     border-width: 0 2px 2px 0;
     transform: rotate(45deg);
   }

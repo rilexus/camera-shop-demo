@@ -56,6 +56,11 @@ const Grid = ({ children }) => {
   return <StyledGrid>{children}</StyledGrid>;
 };
 
+const A = styled.a`
+  color: black;
+  cursor: pointer;
+`;
+
 const Product = ({ id }) => {
   const [product] = useProduct(id);
 
@@ -65,7 +70,14 @@ const Product = ({ id }) => {
       Link={({ children }) => {
         return (
           <Link href={`/product/${id}`}>
-            <a>{children}</a>
+            <a
+              style={{
+                color: "black",
+                textDecoration: "none",
+              }}
+            >
+              {children}
+            </a>
           </Link>
         );
       }}

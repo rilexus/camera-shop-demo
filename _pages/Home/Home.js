@@ -8,6 +8,7 @@ import Footer from "../../components/Footer/Footer";
 import CaruselSection from "./components/CaruselSection/CaruselSection";
 import NewsLatter from "./components/NewsLatter/NewsLatter";
 import Layout from "../../components/Layout/Layout";
+import { Margin } from "../../ui";
 
 const Home = ({ mergeProducts }) => {
   return (
@@ -21,11 +22,21 @@ const Home = ({ mergeProducts }) => {
             <link rel="icon" href="/favicon.ico" />
           </Head>
           <main>
-            <CaruselSection />
-            <MerchSection mergeProducts={mergeProducts} />
-            <WhoWeAreSection />
-            <GallerySection />
-            <NewsLatter />
+            <Margin value={"0 0 10vh 0"}>
+              <CaruselSection />
+            </Margin>
+            <Margin value={"0 0 10vh 0"}>
+              <MerchSection mergeProducts={mergeProducts} />
+            </Margin>
+            <Margin value={"0 0 10vh 0"}>
+              <WhoWeAreSection />
+            </Margin>
+            <Margin value={"0 0 10vh 0"}>
+              <GallerySection />
+            </Margin>
+            <Margin value={"0 0 10vh 0"}>
+              <NewsLatter />
+            </Margin>
           </main>
         </div>
       }

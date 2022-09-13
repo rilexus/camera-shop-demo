@@ -35,7 +35,6 @@ const NewsLatter = () => {
       align={ALIGN.center}
       as={"section"}
       style={{
-        height: "50vh",
         flexWrap: "wrap",
       }}
     >
